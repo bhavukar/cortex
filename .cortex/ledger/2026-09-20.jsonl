@@ -10,3 +10,5 @@
 {"id":"evt_1789901325011_idh1","timestamp":"2026-09-20T10:48:45.011Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}
 {"id":"evt_1789901388359_f0qy","timestamp":"2026-09-20T10:49:48.359Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}
 {"id":"evt_1789901405917_fg0g","timestamp":"2026-09-20T10:50:05.917Z","author":"cli_init","action":"ADD_NODE","payload":{"nodeCount":16,"edgeCount":0}}
+{"id":"evt_1789901588189_suw4","timestamp":"2026-09-20T10:53:08.189Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}
+{"id":"evt_1789901600853_kxk1","timestamp":"2026-09-20T10:53:20.853Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}

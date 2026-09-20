@@ -71,7 +71,7 @@ function switchDemoTab(tabKey, btn) {
   if (!container) return;
 
   // Update active tab buttons
-  document.querySelectorAll('.demo-tab-btn').forEach((b) => b.classList.remove('active'));
+  document.querySelectorAll('.workbench-tab-btn').forEach((b) => b.classList.remove('active'));
   if (btn) {
     btn.classList.add('active');
   }
@@ -81,7 +81,28 @@ function switchDemoTab(tabKey, btn) {
   container.textContent = content;
 }
 
-// 3. View Switcher (Landing vs Docs)
+// 3. Copy Workbench Output
+function copyWorkbenchOutput() {
+  const container = document.getElementById('demo-terminal-output');
+  if (!container) return;
+
+  navigator.clipboard.writeText(container.textContent).then(() => {
+    const btn = document.querySelector('.workbench-header .btn-copy');
+    if (!btn) return;
+    const originalText = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.style.color = '#10b981';
+    btn.style.borderColor = '#10b981';
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  });
+}
+
+// 4. View Switcher (Landing vs Docs)
 function switchView(viewName) {
   const landingView = document.getElementById('view-landing');
   const docsView = document.getElementById('view-docs');
@@ -103,7 +124,7 @@ function switchView(viewName) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 4. Dark / Light Theme Switcher
+// 5. Dark / Light Theme Switcher
 const SVG_MOON = `<svg class="theme-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
 const SVG_SUN = `<svg class="theme-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
 
@@ -138,7 +159,7 @@ function initTheme() {
   }
 }
 
-// 5. Quick CLI Copy on Landing Page
+// 6. Quick CLI Copy on Landing Page
 function copyCliQuick() {
   const cmdText = 'npx cortex-graph init';
   navigator.clipboard.writeText(cmdText).then(() => {
@@ -157,7 +178,7 @@ function copyCliQuick() {
   });
 }
 
-// 6. Code Block Copy Helper
+// 7. Code Block Copy Helper
 function copyCode(btn) {
   const card = btn.closest('.code-card');
   if (!card) return;
@@ -167,7 +188,7 @@ function copyCode(btn) {
   navigator.clipboard.writeText(codeEl.innerText).then(() => {
     const originalText = btn.textContent;
     btn.textContent = 'Copied!';
-    btn.style.color = '#34d399';
+    btn.style.color = '#10b981';
     btn.style.borderColor = '#10b981';
 
     setTimeout(() => {
@@ -178,7 +199,7 @@ function copyCode(btn) {
   });
 }
 
-// 7. Keyboard Shortcut '/' to Focus Docs Search
+// 8. Keyboard Shortcut '/' to Focus Docs Search
 document.addEventListener('keydown', (e) => {
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
     e.preventDefault();
@@ -190,7 +211,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// 8. Search Filter Functionality in Docs
+// 9. Search Filter Functionality in Docs
 function initSearch() {
   const searchInput = document.getElementById('docs-search-input');
   if (!searchInput) return;
@@ -215,7 +236,7 @@ function initSearch() {
   });
 }
 
-// 9. Active Scrollspy for Sidebar & TOC
+// 10. Active Scrollspy for Sidebar & TOC
 function initScrollspy() {
   const observerOptions = {
     root: null,
@@ -245,7 +266,7 @@ function initScrollspy() {
   });
 }
 
-// 10. Auto-switch to Docs if URL contains hash
+// 11. Auto-switch to Docs if URL contains hash
 function checkUrlHash() {
   if (window.location.hash && window.location.hash !== '#') {
     switchView('docs');
@@ -258,7 +279,7 @@ function checkUrlHash() {
   }
 }
 
-// 11. Initialize on DOMContentLoaded
+// 12. Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initSearch();
@@ -266,5 +287,5 @@ document.addEventListener('DOMContentLoaded', () => {
   checkUrlHash();
 
   // Load initial demo tab output
-  switchDemoTab('init', document.querySelector('.demo-tab-btn'));
+  switchDemoTab('init', document.querySelector('.workbench-tab-btn'));
 });
