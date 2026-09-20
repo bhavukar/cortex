@@ -3,459 +3,390 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cortex — Codebase Knowledge Graph &amp; Context Compactor</title>
-  <meta name="description" content="Persistent codebase knowledge graph and context engine for AI coding agents. Sub-2,500 token context compaction with zero Git amnesia." />
+  <title>Cortex — Documentation &amp; API Reference</title>
+  <meta name="description" content="Official documentation and API reference for Cortex: Persistent Codebase Knowledge Graph & Context Compactor for AI Coding Agents." />
   
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..700,0..100&family=Google+Sans+Code:ital,wght@0,400..700;1,400..700&family=Google+Symbols:opsz,wght,FILL,GRAD,ROND@20..48,100..700,0..1,-50..200,0..100&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Ambient Cursor Interaction Glow -->
-  <div class="cursor-ambient-glow" id="cursor-glow"></div>
+  <!-- Top Header Navigation -->
+  <header class="docs-header">
+    <div class="header-left">
+      <a href="#" class="brand-link">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3" fill="#10b981"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="#34d399"/></svg>
+        <span>CORTEX</span>
+      </a>
+      <span class="brand-badge">DOCS</span>
 
-  <!-- Background Morphing Particles Canvas -->
-  <div class="morphing-particles-container">
-    <canvas id="morphing-particles-canvas"></canvas>
-  </div>
-
-  <!-- Floating Frosted Header -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="logo-container">
-        <a href="#" class="brand-logo-link" aria-label="Cortex Home">
-          <img src="assets/logo.svg" alt="Cortex" height="26" />
-        </a>
+      <div class="header-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="doc-search" placeholder="Search documentation (Press '/' to focus)" />
       </div>
+    </div>
 
-      <nav class="nav-menu">
-        <a href="#workbench" class="nav-button">Graph Explorer</a>
-        <a href="#features" class="nav-button">Architecture</a>
-        <a href="#compactor" class="nav-button">Compactor</a>
-        <a href="#mcp-setup" class="nav-button">MCP Server</a>
-        <a href="#cli-ref" class="nav-button">CLI</a>
-      </nav>
-
-      <div class="header-actions">
-        <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-secondary button-compact">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span>GitHub</span>
-        </a>
-        <a href="#workbench" class="button button-primary button-compact">
-          <span>Live Studio</span>
-        </a>
-      </div>
+    <div class="header-right">
+      <a href="#quickstart" class="header-link">Quickstart</a>
+      <a href="#cli-ref" class="header-link">CLI Reference</a>
+      <a href="#mcp-ref" class="header-link">MCP Protocol</a>
+      <a href="#sdk-ref" class="header-link">TypeScript SDK</a>
+      <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="btn-github">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
     </div>
   </header>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="welcome-section">
-      <div class="welcome-container">
-        <h1 class="landing-main-header">
-          Permanent memory for AI coding agents.
-        </h1>
+  <!-- Docs Layout: Sidebar + Main + TOC -->
+  <div class="docs-layout">
+    <!-- Sticky Left Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Overview</div>
+        <a href="#overview" class="sidebar-link active">Introduction</a>
+        <a href="#problem" class="sidebar-link">The Context Overflow Problem</a>
+        <a href="#architecture" class="sidebar-link">Dual-Layer Architecture</a>
+      </div>
 
-        <p class="landing-main-subhead">
-          Cortex builds a dual-layer knowledge graph of your repository's AST structure and past conversational decisions. It replaces 50,000-token codebase dumps with laser-focused sub-2.5k token slices.
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Getting Started</div>
+        <a href="#installation" class="sidebar-link">Installation</a>
+        <a href="#quickstart" class="sidebar-link">Quickstart Tutorial</a>
+        <a href="#configuration" class="sidebar-link">Configuration</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Core Engine</div>
+        <a href="#ast-scanner" class="sidebar-link">AST Code Scanner</a>
+        <a href="#compactor-engine" class="sidebar-link">Sub-2.5k Compactor</a>
+        <a href="#event-ledger" class="sidebar-link">Append-Only Event Ledger</a>
+        <a href="#verification-gates" class="sidebar-link">Verification Gates</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">CLI Reference</div>
+        <a href="#cli-init" class="sidebar-link">cortex init</a>
+        <a href="#cli-sync" class="sidebar-link">cortex sync</a>
+        <a href="#cli-context" class="sidebar-link">cortex context</a>
+        <a href="#cli-decision" class="sidebar-link">cortex decision</a>
+        <a href="#cli-blast" class="sidebar-link">cortex blast</a>
+        <a href="#cli-mcp" class="sidebar-link">cortex mcp</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">MCP Protocol</div>
+        <a href="#mcp-setup" class="sidebar-link">MCP Server Setup</a>
+        <a href="#mcp-tools" class="sidebar-link">Tool Schemas</a>
+        <a href="#mcp-cursor" class="sidebar-link">Cursor &amp; Claude Desktop</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">TypeScript SDK</div>
+        <a href="#sdk-overview" class="sidebar-link">SDK Overview</a>
+        <a href="#sdk-cortex-engine" class="sidebar-link">CortexEngine API</a>
+        <a href="#sdk-compactor" class="sidebar-link">CompactorEngine API</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-main">
+      <div class="docs-content">
+        <!-- Document Title -->
+        <h1 class="docs-title">Cortex Documentation</h1>
+        <p class="docs-lead">
+          Cortex is a local, dual-layer codebase knowledge graph and context engine designed for autonomous AI agents. It compresses multi-file repository dumps into sub-2,500 token precision slices while preserving architectural decisions and invariants.
         </p>
 
-        <div class="welcome-cta-group">
-          <a href="#workbench" class="button button-primary">
-            <span>Explore Knowledge Graph</span>
-            <span class="symbol">arrow_forward</span>
-          </a>
-          <a href="#compactor" class="button button-secondary">
-            <span>Context Compactor</span>
-          </a>
-        </div>
-
-        <div class="cli-pill" onclick="copyCliCommand()" title="Click to copy command">
-          <span class="cli-prompt">$</span>
-          <span id="cli-command-text">npx cortex-graph init</span>
-          <span class="cli-copy-btn" id="cli-copy-label">Copy</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTERACTIVE WORKBENCH STAGE -->
-    <section id="workbench" class="stage-section">
-      <div class="workbench-card">
-        <!-- Top Window Header -->
-        <div class="workbench-top-bar">
-          <div class="window-dots">
-            <span class="window-dot close"></span>
-            <span class="window-dot minimize"></span>
-            <span class="window-dot maximize"></span>
-          </div>
-
-          <div class="workbench-tabs">
-            <button class="wb-tab active" onclick="switchWbTab('graph', this)">Dual Graph</button>
-            <button class="wb-tab" onclick="switchWbTab('ast', this)">AST Topology</button>
-            <button class="wb-tab" onclick="switchWbTab('memory', this)">Epistemic Ledger</button>
-            <button class="wb-tab" onclick="switchWbTab('mcp', this)">MCP Protocol</button>
-          </div>
-
-          <div class="workbench-status">
-            <span class="status-beacon"></span>
-            <span>LIVE (0.4ms)</span>
-          </div>
-        </div>
-
-        <!-- Workbench Workspace -->
-        <div class="workbench-main">
-          <!-- Graph Viewport Canvas -->
-          <div class="graph-canvas-viewport" id="graph-viewport">
-            <svg class="graph-svg-layer" id="graph-svg"></svg>
-            <div class="graph-nodes-layer" id="graph-nodes"></div>
-          </div>
-
-          <!-- Side Inspector Drawer -->
-          <div class="workbench-inspector" id="workbench-inspector">
-            <div class="inspector-header">
-              <span class="inspector-badge" id="insp-type">LAYER 2 // DECISION</span>
-              <h3 class="inspector-title" id="insp-title">Use Redis for Token Revocation</h3>
-            </div>
-
-            <div class="inspector-section">
-              <span class="inspector-label">Verification Status</span>
-              <div class="inspector-box" id="insp-status-box" style="border-left: 3px solid var(--palette-emerald-600);">
-                <strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed verification test <code>auth.test.ts</code> (exit 0).
-              </div>
-            </div>
-
-            <div class="inspector-section">
-              <span class="inspector-label">AST Target Symbol</span>
-              <div class="inspector-box">
-                <code id="insp-symbol">src/auth/token.service.ts::TokenService</code>
-              </div>
-            </div>
-
-            <div class="inspector-section">
-              <span class="inspector-label">Rationale &amp; Invariants</span>
-              <div class="inspector-box" id="insp-notes">
-                JWT blacklisting moved to distributed Redis cache with 15-minute sliding TTL. Prevents database bottlenecks during token rotation spikes.
-              </div>
-            </div>
-
-            <div class="inspector-section">
-              <span class="inspector-label">Compacted Slice Output</span>
-              <div class="inspector-box" style="background: var(--palette-grey-20);">
-                <span style="color: var(--palette-blue-600); font-weight: 600;">180 tokens</span> emitted instead of 4,800 token raw file dump.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ARCHITECTURE FEATURES SECTION WITH RICH VISUALS -->
-    <section id="features" class="feature-explorer-section">
-      <div class="section-container">
-        <div class="section-head">
-          <span class="section-eyebrow">Core Engine</span>
-          <h2 class="section-title">How Cortex solves agent amnesia.</h2>
-          <p class="section-description">
-            Conventional agent tools dump dozens of complete files into the prompt, overflowing the context window and diluting attention. Cortex extracts minimal 2-hop graph slices.
+        <!-- SECTION 1: OVERVIEW -->
+        <section id="overview" class="section-block">
+          <h2 class="section-heading">Introduction</h2>
+          <p>
+            When AI coding agents (such as Claude Desktop, Cursor, Cline, or custom agent harnesses) work on complex software repositories, they face two fundamental bottlenecks:
           </p>
-        </div>
-
-        <div class="feature-list">
-          <!-- Feature 1: Dual-Layer Graph Visual -->
-          <div class="feature-item">
-            <div class="feature-copy">
-              <h3 class="feature-heading">Structural AST + Epistemic Memory</h3>
-              <p class="feature-text">
-                Cortex synchronizes two layers. Layer 1 maps code symbols, imports, exports, and design system contracts using AST parsing. Layer 2 captures conversational decisions, invariants, and discovered gotchas.
-              </p>
-            </div>
-            
-            <div class="feature-media-frame">
-              <div class="dual-topology-visual">
-                <!-- Top Layer: AST -->
-                <div class="topology-layer-card ast-layer">
-                  <div class="topology-header">
-                    <span class="topology-title">Layer 1: Structural Code AST</span>
-                    <span class="topology-badge">AST Scanner</span>
-                  </div>
-                  <div class="topology-nodes-row">
-                    <div class="topo-node-chip"><span class="symbol" style="font-size: 15px; color: var(--palette-blue-600);">code</span> TokenService</div>
-                    <div class="topo-node-chip"><span class="symbol" style="font-size: 15px; color: var(--palette-blue-600);">api</span> AuthController</div>
-                    <div class="topo-node-chip"><span class="symbol" style="font-size: 15px; color: var(--palette-blue-600);">widgets</span> TextInput</div>
-                  </div>
-                </div>
-
-                <!-- Connector Ray -->
-                <div class="topo-connector-ray">
-                  <div class="ray-line"></div>
-                  <span class="ray-badge">2-Hop Causal Link</span>
-                </div>
-
-                <!-- Bottom Layer: Memory -->
-                <div class="topology-layer-card memory-layer">
-                  <div class="topology-header">
-                    <span class="topology-title">Layer 2: Epistemic Memory</span>
-                    <span class="topology-badge" style="background: var(--palette-emerald-50); color: var(--palette-emerald-600);">Invariants &amp; Gates</span>
-                  </div>
-                  <div class="topology-nodes-row">
-                    <div class="topo-node-chip" style="border-left: 3px solid var(--palette-emerald-600);">
-                      <span>[INVARIANT] Redis Sliding TTL 15m</span>
-                    </div>
-                    <div class="topo-node-chip" style="border-left: 3px solid var(--palette-amber-600);">
-                      <span>[GOTCHA] Always wrap TextInput</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature 2: Context Compactor Visual Funnel -->
-          <div class="feature-item reverse">
-            <div class="feature-copy">
-              <h3 class="feature-heading">Sub-2,500 Token Context Slicing</h3>
-              <p class="feature-text">
-                When an agent works on a function, it doesn't need 10 full files. It only needs the target symbol's signatures, active invariants, and known gotchas within its exact 2-hop blast radius.
-              </p>
-            </div>
-
-            <div class="feature-media-frame">
-              <div class="compaction-funnel-visual">
-                <div class="funnel-comparison-grid">
-                  <!-- Before Box -->
-                  <div class="funnel-box before">
-                    <div class="funnel-box-head">
-                      <span style="font-size: 11.5px; font-weight: 600; color: var(--palette-rose-500);">RAW FILE DUMP</span>
-                    </div>
-                    <div class="funnel-metric-huge waste">48,200</div>
-                    <span style="font-size: 11px; color: var(--palette-grey-800);">8 full files (4,200 lines)</span>
-                    <div class="funnel-file-stack">
-                      <div class="file-stack-bar waste-fill"></div>
-                      <div class="file-stack-bar waste-fill"></div>
-                      <div class="file-stack-bar waste-fill"></div>
-                    </div>
-                  </div>
-
-                  <!-- Funnel Center Arrow -->
-                  <div class="funnel-arrow-center">
-                    <span class="funnel-ratio-chip">97.5% SLICE</span>
-                    <span class="symbol" style="color: var(--palette-blue-600); font-size: 24px;">arrow_forward</span>
-                  </div>
-
-                  <!-- After Box -->
-                  <div class="funnel-box after">
-                    <div class="funnel-box-head">
-                      <span style="font-size: 11.5px; font-weight: 600; color: var(--palette-emerald-600);">CORTEX SLICE</span>
-                    </div>
-                    <div class="funnel-metric-huge optimal">1,180</div>
-                    <span style="font-size: 11px; color: var(--palette-grey-800);">2-hop signatures only</span>
-                    <div class="funnel-file-stack">
-                      <div class="file-stack-bar optimal-fill"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature 3: Event-Sourced Ledger Visual -->
-          <div class="feature-item">
-            <div class="feature-copy">
-              <h3 class="feature-heading">Append-Only Event Sourcing</h3>
-              <p class="feature-text">
-                Monolithic memory files cause merge conflicts when multiple developers or agent swarms work in parallel branches. Cortex records atomic events to <code style="color: var(--palette-blue-600);">.cortex/ledger/*.jsonl</code> that merge cleanly in Git without conflict.
-              </p>
-            </div>
-
-            <div class="feature-media-frame">
-              <div class="ledger-timeline-visual">
-                <div class="ledger-event-row">
-                  <span class="event-hash">#a9f104</span>
-                  <span class="event-payload">DECISION_RECORDED (Redis Cache)</span>
-                  <span class="event-gate-status verified">GATE PASSED</span>
-                </div>
-                <div class="ledger-event-row">
-                  <span class="event-hash">#c83b12</span>
-                  <span class="event-payload">INVARIANT_LOCKED (Custom TextInput)</span>
-                  <span class="event-gate-status verified">VERIFIED</span>
-                </div>
-                <div class="ledger-event-row">
-                  <span class="event-hash">#d71e98</span>
-                  <span class="event-payload">HEBBIAN_WEIGHT_REINFORCED (1.45x)</span>
-                  <span class="event-gate-status tentative">SYNCED</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIVE CONTEXT COMPACTOR SIMULATOR -->
-    <section id="compactor" class="compactor-section">
-      <div class="section-container">
-        <div class="section-head">
-          <span class="section-eyebrow">Interactive Simulator</span>
-          <h2 class="section-title">Test the Context Compactor in real-time.</h2>
-          <p class="section-description">
-            Compare a standard 48,000-token multi-file context dump against Cortex's high-precision 2-hop compacted slice.
+          <ul>
+            <li><strong>Context Amnesia:</strong> When a conversation ends or context resets, the agent forgets past architectural decisions, known gotchas, and refactoring constraints.</li>
+            <li><strong>Context Window Overflow:</strong> Traditional tools dump 10 to 30 full files (40,000+ tokens) into the context window, causing high latency, token exhaustion, and attention dilution.</li>
+          </ul>
+          <p>
+            Cortex solves this by building an in-memory <strong>Dual-Layer Knowledge Graph</strong> and an <strong>Append-Only Event Ledger</strong> directly inside your repository.
           </p>
-        </div>
 
-        <div class="simulator-card">
-          <div class="simulator-controls">
-            <div class="scenario-pill-group">
-              <button class="scenario-pill active" onclick="switchScenario('auth', this)">Authentication Service</button>
-              <button class="scenario-pill" onclick="switchScenario('payment', this)">Payment Webhook</button>
-              <button class="scenario-pill" onclick="switchScenario('database', this)">Postgres Migration</button>
+          <div class="grid-cards-2">
+            <div class="doc-card">
+              <h4 class="doc-card-title">Layer 1: Structural Code AST</h4>
+              <p class="doc-card-desc">Parses exports, functions, classes, and design system tokens into a causal dependency DAG.</p>
             </div>
-
-            <div class="compression-metrics">
-              <div class="metric-pill">
-                <span class="metric-val" id="metric-ratio">97.5%</span>
-                <span class="metric-sub">Token Reduction</span>
-              </div>
-              <div class="metric-pill">
-                <span class="metric-val" id="metric-latency">&lt; 1.2ms</span>
-                <span class="metric-sub">Graph Resolution</span>
-              </div>
+            <div class="doc-card">
+              <h4 class="doc-card-title">Layer 2: Epistemic Memory</h4>
+              <p class="doc-card-desc">Records architectural decisions, invariants, and discovered gotchas linked directly to AST symbols.</p>
             </div>
           </div>
+        </section>
 
-          <div class="simulator-grid">
-            <!-- Left: Raw Dump -->
-            <div class="sim-pane">
-              <div class="sim-pane-header">
-                <span class="sim-pane-title">Standard Agent Dump (8 Full Files)</span>
-                <span class="token-badge waste" id="raw-tokens">48,200 TOKENS</span>
-              </div>
-              <div class="sim-code-area" id="raw-code-box">// Loading full file dump for scenario...</div>
-            </div>
+        <!-- SECTION 2: GETTING STARTED & QUICKSTART -->
+        <section id="installation" class="section-block">
+          <h2 class="section-heading">Installation &amp; Setup</h2>
+          <p>Install the Cortex CLI globally using npm, or run it directly using <code>npx</code>:</p>
 
-            <!-- Right: Cortex Compacted Slice -->
-            <div class="sim-pane">
-              <div class="sim-pane-header">
-                <span class="sim-pane-title">Cortex 2-Hop Compacted Slice</span>
-                <span class="token-badge optimal" id="compact-tokens">1,180 TOKENS</span>
-              </div>
-              <div class="sim-code-area" id="compact-code-box">// Loading compacted slice...</div>
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">BASH</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
             </div>
+            <pre class="code-pre"><code><span class="tok-com"># Install globally</span>
+npm install -g cortex-graph
+
+<span class="tok-com"># Or run directly via npx</span>
+npx cortex-graph init</code></pre>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- MCP SERVER INTEGRATION -->
-    <section id="mcp-setup" class="feature-explorer-section">
-      <div class="section-container">
-        <div class="section-head">
-          <span class="section-eyebrow">Universal Protocol</span>
-          <h2 class="section-title">Model Context Protocol (MCP) Integration</h2>
-          <p class="section-description">
-            Cortex runs as a standard stdio MCP server. Connect Claude Desktop, Cursor, Cline, or custom agents with one config block.
+        <section id="quickstart" class="section-block">
+          <h2 class="section-heading">Quickstart Tutorial</h2>
+          <p>Follow these 3 steps to integrate Cortex with your codebase:</p>
+
+          <h3 class="sub-heading">Step 1: Initialize Cortex in your repository</h3>
+          <p>Run <code>cortex init</code> in your project root. Cortex scans all source files, constructs the initial AST topology, and creates <code>.project-cortex.json</code> and <code>.cortex/ledger/</code>:</p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">BASH</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code>cd /path/to/your/project
+cortex init</code></pre>
+          </div>
+
+          <h3 class="sub-heading">Step 2: Record an Architectural Decision</h3>
+          <p>When you or an AI agent make an architectural choice, lock it into the episodic memory layer with an optional verification test:</p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">BASH</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code>cortex decision <span class="tok-str">"Use Redis for Token Revocation"</span> \
+  --target <span class="tok-str">"src/auth/token.service.ts::TokenService"</span> \
+  --test <span class="tok-str">"npm test auth.test.ts"</span> \
+  --invariant</code></pre>
+          </div>
+
+          <h3 class="sub-heading">Step 3: Query Sub-2.5k Token Context Slice</h3>
+          <p>Extract a compacted context slice for any file or function. The compactor emits only 2-hop interfaces, verified invariants, and known gotchas:</p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">BASH</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code>cortex context src/auth/token.service.ts</code></pre>
+          </div>
+        </section>
+
+        <!-- SECTION 3: CORE ARCHITECTURE -->
+        <section id="architecture" class="section-block">
+          <h2 class="section-heading">Dual-Layer Architecture</h2>
+          <p>
+            Cortex combines two distinct planes into a unified graph:
           </p>
-        </div>
 
-        <div class="simulator-card">
-          <div class="code-preview-box">
-            <span class="tok-com">// Claude Desktop config / cursor-settings.json</span><br/>
-            {<br/>
-            &nbsp;&nbsp;<span class="tok-kw">"mcpServers"</span>: {<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"cortex"</span>: {<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"command"</span>: <span class="tok-str">"npx"</span>,<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"cortex-graph"</span>, <span class="tok-str">"mcp"</span>]<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-            &nbsp;&nbsp;}<br/>
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CLI REFERENCE SECTION -->
-    <section id="cli-ref" class="feature-explorer-section" style="padding-top: 0;">
-      <div class="section-container">
-        <div class="section-head">
-          <span class="section-eyebrow">Terminal First</span>
-          <h2 class="section-title">CLI Commands Quick Reference</h2>
-        </div>
-
-        <div class="cards-grid-3">
-          <div class="use-case-card">
-            <div class="card-top">
-              <h3 class="card-title"><code>cortex init</code></h3>
-              <p class="card-desc">
-                Scans your repository, parses the AST across all source files, and initializes the local graph and ledger.
-              </p>
-            </div>
+          <div class="callout">
+            <div class="callout-title">Mathematical Heuristic for 2-Hop BFS</div>
+            <p>
+              Given a target node \(v\), the 2-hop subgraph \(G_2(v) = \{u \in V \mid d(v, u) \le 2\}\) isolates the immediate callers and callees. Cortex strips private implementations and retains only exported interface signatures and active invariants, reducing token payload by 95%–98%.
+            </p>
           </div>
 
-          <div class="use-case-card">
-            <div class="card-top">
-              <h3 class="card-title"><code>cortex context &lt;target&gt;</code></h3>
-              <p class="card-desc">
-                Extracts a sub-2,500 token compacted context slice containing 2-hop interfaces, invariants, and gotchas.
-              </p>
-            </div>
-          </div>
-
-          <div class="use-case-card">
-            <div class="card-top">
-              <h3 class="card-title"><code>cortex decision &lt;title&gt;</code></h3>
-              <p class="card-desc">
-                Records an architectural decision with optional verification gates into the append-only event ledger.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOTTOM INSTALLATION BANNER -->
-    <div class="liftoff-container">
-      <div class="liftoff-card">
-        <div class="morphing-particles-container">
-          <canvas id="liftoff-particles-canvas"></canvas>
-        </div>
-        <div class="liftoff-content">
-          <h2 class="liftoff-title">Get started with Cortex.</h2>
-          <p class="liftoff-desc">
-            Give your AI coding agents permanent memory, automated invariant verification, and sub-2.5k token precision context slices.
+          <h3 class="sub-heading">Zero-Conflict Event Sourcing</h3>
+          <p>
+            Instead of storing all decisions in a single mutable JSON file that causes Git merge conflicts across agent branches, Cortex uses an append-only event ledger in <code>.cortex/ledger/*.jsonl</code>. Each decision, test execution, or gotcha is an immutable event:
           </p>
-          <div class="liftoff-actions">
-            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-white">
-              <span>View on GitHub</span>
-            </a>
-            <div class="cli-pill" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;" onclick="copyCliCommand()">
-              <span class="cli-prompt" style="color: #64b5f6;">$</span>
-              <span>npm install -g cortex-graph</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
 
-  <!-- CLEAN MINIMALIST FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <img src="assets/logo.svg" alt="Cortex" height="20" />
-          <span>Persistent Codebase Knowledge Graph &amp; Context Engine for AI Agents.</span>
-        </div>
-        <div class="footer-legal-links">
-          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener">GitHub</a>
-          <a href="#workbench">Studio</a>
-          <a href="#compactor">Compactor</a>
-          <a href="#mcp-setup">MCP</a>
-        </div>
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">JSONL (.cortex/ledger/events-172683921.jsonl)</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code>{ <span class="tok-kw">"eventId"</span>: <span class="tok-str">"evt-9f82b1"</span>, <span class="tok-kw">"type"</span>: <span class="tok-str">"DECISION_RECORDED"</span>, <span class="tok-kw">"timestamp"</span>: <span class="tok-str">"2026-09-20T10:00:00Z"</span>, <span class="tok-kw">"author"</span>: <span class="tok-str">"agent-auth"</span>, <span class="tok-kw">"data"</span>: { <span class="tok-kw">"title"</span>: <span class="tok-str">"Use Redis for Token Revocation"</span>, <span class="tok-kw">"targetNode"</span>: <span class="tok-str">"src/auth/token.service.ts"</span> } }
+{ <span class="tok-kw">"eventId"</span>: <span class="tok-str">"evt-9f82b2"</span>, <span class="tok-kw">"type"</span>: <span class="tok-str">"GATE_PASSED"</span>, <span class="tok-kw">"decisionId"</span>: <span class="tok-str">"evt-9f82b1"</span>, <span class="tok-kw">"testCommand"</span>: <span class="tok-str">"npm test auth.test.ts"</span>, <span class="tok-kw">"exitCode"</span>: 0, <span class="tok-kw">"promotedTo"</span>: <span class="tok-str">"INVARIANT"</span> }</code></pre>
+          </div>
+        </section>
+
+        <!-- SECTION 4: CLI REFERENCE -->
+        <section id="cli-ref" class="section-block">
+          <h2 class="section-heading">CLI Command Reference</h2>
+          <p>The Cortex CLI provides commands for graph maintenance, context extraction, and ledger management.</p>
+
+          <div class="param-table-wrap">
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Arguments / Flags</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="param-name">cortex init</span></td>
+                  <td><code>--force</code>, <code>--include &lt;globs&gt;</code></td>
+                  <td>Scans AST, builds knowledge graph, and initializes <code>.cortex/ledger/</code>.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex sync</span></td>
+                  <td><code>--watch</code></td>
+                  <td>Re-scans modified files and updates AST symbols in real-time.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex context</span></td>
+                  <td><code>&lt;targetSymbol&gt;</code>, <code>--max-tokens &lt;n&gt;</code></td>
+                  <td>Extracts a sub-2,500 token compacted context slice for the target.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex decision</span></td>
+                  <td><code>&lt;title&gt;</code>, <code>--target &lt;sym&gt;</code>, <code>--test &lt;cmd&gt;</code>, <code>--invariant</code></td>
+                  <td>Records an architectural decision with optional verification test.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex gotcha</span></td>
+                  <td><code>&lt;title&gt;</code>, <code>--target &lt;sym&gt;</code>, <code>--note &lt;text&gt;</code></td>
+                  <td>Records a critical bug warning or pitfall attached to a symbol.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex blast</span></td>
+                  <td><code>&lt;fileOrSymbol&gt;</code></td>
+                  <td>Calculates the 2-hop blast radius and upstream/downstream callers.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex mcp</span></td>
+                  <td><code>--stdio</code></td>
+                  <td>Starts the Model Context Protocol stdio server for IDE agents.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 5: MODEL CONTEXT PROTOCOL (MCP) -->
+        <section id="mcp-ref" class="section-block">
+          <h2 class="section-heading">Model Context Protocol (MCP) Integration</h2>
+          <p>
+            Cortex natively exposes an MCP server over standard I/O (<code>stdio</code>), enabling Claude Desktop, Cursor, Cline, and other MCP clients to query context slices dynamically.
+          </p>
+
+          <h3 class="sub-heading">Claude Desktop &amp; Cursor Configuration</h3>
+          <p>Add the Cortex MCP server to your client configuration file:</p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">JSON (claude_desktop_config.json / .cursor/mcp.json)</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code>{
+  <span class="tok-kw">"mcpServers"</span>: {
+    <span class="tok-kw">"cortex"</span>: {
+      <span class="tok-kw">"command"</span>: <span class="tok-str">"npx"</span>,
+      <span class="tok-kw">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"cortex-graph"</span>, <span class="tok-str">"mcp"</span>],
+      <span class="tok-kw">"env"</span>: {
+        <span class="tok-kw">"CORTEX_ROOT"</span>: <span class="tok-str">"/path/to/your/project"</span>
+      }
+    }
+  }
+}</code></pre>
+          </div>
+
+          <h3 class="sub-heading">Exposed MCP Tools</h3>
+          <div class="param-table-wrap">
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Tool Name</th>
+                  <th>Parameters</th>
+                  <th>Return Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="param-name">cortex_get_context</span></td>
+                  <td><code>targetSymbol</code> (string), <code>maxTokens</code> (optional number)</td>
+                  <td>Sub-2.5k compacted context slice with signatures and active invariants.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex_record_decision</span></td>
+                  <td><code>title</code> (string), <code>targetNode</code> (string), <code>invariants</code> (string[]), <code>testCommand</code> (optional string)</td>
+                  <td>Confirmation object with event ID and verification gate status.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex_record_gotcha</span></td>
+                  <td><code>title</code> (string), <code>targetNode</code> (string), <code>note</code> (string)</td>
+                  <td>Recorded gotcha event logged to ledger.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex_blast_radius</span></td>
+                  <td><code>targetSymbol</code> (string)</td>
+                  <td>List of direct callers, downstream dependencies, and affected tests.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">cortex_sync</span></td>
+                  <td>None</td>
+                  <td>AST refresh summary with count of added/updated symbols.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 6: TYPESCRIPT SDK -->
+        <section id="sdk-ref" class="section-block">
+          <h2 class="section-heading">Programmatic TypeScript SDK</h2>
+          <p>
+            You can embed Cortex directly into custom Python or TypeScript agent harnesses using the exported programmatic APIs:
+          </p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-lang-label">TYPESCRIPT</span>
+              <button class="btn-copy" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-pre"><code><span class="tok-kw">import</span> { CortexEngine, CompactorEngine, LedgerStore } <span class="tok-kw">from</span> <span class="tok-str">'cortex-graph'</span>;
+
+<span class="tok-com">// 1. Initialize Graph Engine</span>
+<span class="tok-kw">const</span> engine = <span class="tok-kw">new</span> CortexEngine(<span class="tok-str">'/path/to/project'</span>);
+<span class="tok-kw">await</span> engine.initialize();
+
+<span class="tok-com">// 2. Query 2-Hop Blast Radius</span>
+<span class="tok-kw">const</span> blastRadius = engine.getBlastRadius(<span class="tok-str">'src/auth/token.service.ts::TokenService'</span>);
+console.log(<span class="tok-str">'Affected Callers:'</span>, blastRadius.callers);
+
+<span class="tok-com">// 3. Generate Compacted Context Slice</span>
+<span class="tok-kw">const</span> compactor = <span class="tok-kw">new</span> CompactorEngine(engine);
+<span class="tok-kw">const</span> contextSlice = <span class="tok-kw">await</span> compactor.compact({
+  targetSymbol: <span class="tok-str">'src/auth/token.service.ts::TokenService'</span>,
+  maxTokens: 2500
+});
+
+console.log(<span class="tok-str">'Emitted Token Count:'</span>, contextSlice.tokenCount); <span class="tok-com">// e.g. 1,180 tokens</span>
+console.log(<span class="tok-str">'Invariants:'</span>, contextSlice.invariants);</code></pre>
+          </div>
+        </section>
       </div>
-    </div>
-  </footer>
+    </main>
+
+    <!-- Sticky Right Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On this page</div>
+      <a href="#overview" class="toc-link active">Introduction</a>
+      <a href="#installation" class="toc-link">Installation</a>
+      <a href="#quickstart" class="toc-link">Quickstart Tutorial</a>
+      <a href="#architecture" class="toc-link">Dual-Layer Architecture</a>
+      <a href="#cli-ref" class="toc-link">CLI Reference</a>
+      <a href="#mcp-ref" class="toc-link">MCP Protocol Integration</a>
+      <a href="#sdk-ref" class="toc-link">TypeScript SDK</a>
+    </aside>
+  </div>
 
   <script src="app.js"></script>
 </body>
