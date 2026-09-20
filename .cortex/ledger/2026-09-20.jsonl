@@ -1,1 +1,6 @@
 {"id":"evt_1789898702374_0ey3","timestamp":"2026-09-20T10:05:02.374Z","author":"cli_init","action":"ADD_NODE","payload":{"nodeCount":12,"edgeCount":0}}
+{"id":"evt_1789900866483_tgwh","timestamp":"2026-09-20T10:41:06.483Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}
+{"id":"evt_1789900876282_fmaw","timestamp":"2026-09-20T10:41:16.282Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}
+{"id":"evt_1789900879046_u5cj","timestamp":"2026-09-20T10:41:19.046Z","author":"cli_init","action":"ADD_NODE","payload":{"nodeCount":16,"edgeCount":0}}
+{"id":"evt_1789900903919_tvko","timestamp":"2026-09-20T10:41:43.919Z","author":"cli_init","action":"ADD_NODE","payload":{"nodeCount":16,"edgeCount":0}}
+{"id":"evt_1789900922896_t0nb","timestamp":"2026-09-20T10:42:02.896Z","author":"unit_test","action":"RECORD_DECISION","payload":{"topic":"Unit Test Event"}}

@@ -7,14 +7,32 @@
   "types": "dist/index.d.ts",
   "bin": {
     "cortex": "./bin/cortex.js",
+    "cortex-graph": "./bin/cortex.js",
+    "cortex-memory": "./bin/cortex.js",
     "cortex-mcp": "./bin/cortex.js"
   },
+  "files": [
+    "dist",
+    "bin",
+    "web",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
     "start": "node dist/cli.js",
+    "test": "tsc && node --test dist/tests/cortex.test.js",
     "mcp": "node dist/mcp/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhavukar/cortex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhavukar/cortex/issues"
+  },
+  "homepage": "https://github.com/bhavukar/cortex#readme",
   "keywords": [
     "mcp",
     "model-context-protocol",

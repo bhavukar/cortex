@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "projectName": "cortex",
   "rootPath": "/Users/bhavukarora/.gemini/antigravity/scratch/cortex",
-  "updatedAt": "2026-09-20T10:05:02.374Z",
+  "updatedAt": "2026-09-20T10:41:43.919Z",
   "blueprint": {
     "framework": "Model Context Protocol (MCP) Server",
     "pattern": "Modular Architecture",
@@ -15,6 +15,32 @@
   },
   "nodes": [
     {
+      "id": "file:.cortex/graph.json",
+      "type": "file",
+      "label": "graph.json",
+      "summary": "graph.json module",
+      "status": "verified",
+      "path": ".cortex/graph.json",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:41:43.915Z",
+      "updatedAt": "2026-09-20T10:41:43.915Z"
+    },
+    {
+      "id": "file:.project-cortex.json",
+      "type": "file",
+      "label": ".project-cortex.json",
+      "summary": ".project-cortex.json module",
+      "status": "verified",
+      "path": ".project-cortex.json",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:41:43.916Z",
+      "updatedAt": "2026-09-20T10:41:43.916Z"
+    },
+    {
       "id": "file:bin/cortex.js",
       "type": "file",
       "label": "cortex.js",
@@ -24,8 +50,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.372Z",
-      "updatedAt": "2026-09-20T10:05:02.372Z"
+      "createdAt": "2026-09-20T10:41:43.916Z",
+      "updatedAt": "2026-09-20T10:41:43.916Z"
     },
     {
       "id": "file:package-lock.json",
@@ -37,8 +63,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.916Z",
+      "updatedAt": "2026-09-20T10:41:43.916Z"
     },
     {
       "id": "file:package.json",
@@ -50,8 +76,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.916Z",
+      "updatedAt": "2026-09-20T10:41:43.916Z"
     },
     {
       "id": "file:src/ast/scanner.ts",
@@ -70,8 +96,8 @@
         "../types.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.917Z",
+      "updatedAt": "2026-09-20T10:41:43.917Z"
     },
     {
       "id": "file:src/cli.ts",
@@ -92,8 +118,8 @@
         "./mcp/server.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.917Z",
+      "updatedAt": "2026-09-20T10:41:43.917Z"
     },
     {
       "id": "file:src/graph/compactor.ts",
@@ -111,8 +137,8 @@
         "./engine.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.917Z",
+      "updatedAt": "2026-09-20T10:41:43.917Z"
     },
     {
       "id": "file:src/graph/engine.ts",
@@ -128,8 +154,8 @@
         "../types.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.917Z",
+      "updatedAt": "2026-09-20T10:41:43.917Z"
     },
     {
       "id": "file:src/graph/ledger.ts",
@@ -148,8 +174,8 @@
         "./engine.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.918Z",
+      "updatedAt": "2026-09-20T10:41:43.918Z"
     },
     {
       "id": "file:src/index.ts",
@@ -168,8 +194,8 @@
         "./mcp/server.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.373Z"
+      "createdAt": "2026-09-20T10:41:43.918Z",
+      "updatedAt": "2026-09-20T10:41:43.918Z"
     },
     {
       "id": "file:src/mcp/server.ts",
@@ -190,8 +216,30 @@
         "../ast/scanner.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.373Z",
-      "updatedAt": "2026-09-20T10:05:02.374Z"
+      "createdAt": "2026-09-20T10:41:43.918Z",
+      "updatedAt": "2026-09-20T10:41:43.918Z"
+    },
+    {
+      "id": "file:src/tests/cortex.test.ts",
+      "type": "file",
+      "label": "cortex.test.ts",
+      "summary": "cortex.test.ts module",
+      "status": "verified",
+      "path": "src/tests/cortex.test.ts",
+      "exports": [],
+      "imports": [
+        "node:test",
+        "node:assert/strict",
+        "../graph/engine.js",
+        "../graph/compactor.js",
+        "../graph/ledger.js",
+        "../ast/scanner.js",
+        "fs",
+        "path"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:41:43.918Z",
+      "updatedAt": "2026-09-20T10:41:43.918Z"
     },
     {
       "id": "file:src/types.ts",
@@ -213,8 +261,8 @@
       ],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.374Z",
-      "updatedAt": "2026-09-20T10:05:02.374Z"
+      "createdAt": "2026-09-20T10:41:43.918Z",
+      "updatedAt": "2026-09-20T10:41:43.918Z"
     },
     {
       "id": "file:tsconfig.json",
@@ -226,8 +274,21 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:05:02.374Z",
-      "updatedAt": "2026-09-20T10:05:02.374Z"
+      "createdAt": "2026-09-20T10:41:43.919Z",
+      "updatedAt": "2026-09-20T10:41:43.919Z"
+    },
+    {
+      "id": "file:web/app.js",
+      "type": "file",
+      "label": "app.js",
+      "summary": "CORTEX — DEVELOPER PORTAL & INTERACTIVE CLIENT ENGINE\n  Strictly zero emojis, clean developer-friendly interactions.",
+      "status": "verified",
+      "path": "web/app.js",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:41:43.919Z",
+      "updatedAt": "2026-09-20T10:41:43.919Z"
     }
   ],
   "edges": []
