@@ -1,387 +1,471 @@
-// Cortex — Dual-Layer Codebase Knowledge Graph & Episodic Memory Controller
+/**
+ * GOOGLE ANTIGRAVITY // CORTEX APPLICATION LOGIC
+ * High-performance particle physics, interactive dual-layer graph DAG,
+ * live compactor simulator, and workbench controllers.
+ */
 
-const GRAPH_DATA = {
-  nodes: [
-    // LAYER 1: CODE AST TOPOLOGY
-    {
-      id: "file:src/auth/jwt.ts",
-      layer: "ast",
-      type: "file",
-      label: "jwt.ts",
-      path: "src/auth/jwt.ts",
-      status: "verified",
-      x: 15,
-      y: 20,
-      summary: "Handles token signing, RSA256 public key verification, and JWT claims validation.",
-      exports: ["verifyToken", "generateToken", "Claims"]
-    },
-    {
-      id: "file:src/routes/auth.ts",
-      layer: "ast",
-      type: "file",
-      label: "routes/auth.ts",
-      path: "src/routes/auth.ts",
-      status: "verified",
-      x: 48,
-      y: 20,
-      summary: "Express/Next.js API route handler for login, refresh, and session revocation.",
-      exports: ["authRouter", "handleLogin"]
-    },
-    {
-      id: "file:src/db/redis.ts",
-      layer: "ast",
-      type: "file",
-      label: "db/redis.ts",
-      path: "src/db/redis.ts",
-      status: "verified",
-      x: 80,
-      y: 20,
-      summary: "Redis client wrapper configured for session cache and distributed locks.",
-      exports: ["redisClient", "setWithExpiry"]
-    },
-    {
-      id: "file:src/services/billing.ts",
-      layer: "ast",
-      type: "file",
-      label: "services/billing.ts",
-      path: "src/services/billing.ts",
-      status: "verified",
-      x: 15,
-      y: 65,
-      summary: "Subscription lifecycle, Stripe webhook processing, and usage charge calculations.",
-      exports: ["processSubscription", "calculateOverage"]
-    },
-    {
-      id: "file:src/db/postgres.ts",
-      layer: "ast",
-      type: "file",
-      label: "db/postgres.ts",
-      path: "src/db/postgres.ts",
-      status: "verified",
-      x: 48,
-      y: 65,
-      summary: "Prisma ORM connection pool and database query client.",
-      exports: ["db", "runTransaction"]
-    },
+// =============================================================================
+// 1. MORPHING PARTICLES SIMULATION (HERO & LIFTOFF BANNER)
+// =============================================================================
+function initParticles(canvasId, isDark = false) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-    // LAYER 2: EPISODIC INTENT MEMORY
-    {
-      id: "decision:dec_001",
-      layer: "memory",
-      type: "decision",
-      label: "Redis Token Revocation",
-      status: "verified",
-      x: 80,
-      y: 65,
-      summary: "Do not store revoked JWTs in Postgres. Use Redis with 24h TTL to avoid database lock contention on auth checks.",
-      author: "agent_claude_sonnet"
-    },
-    {
-      id: "gotcha:gotcha_002",
-      layer: "memory",
-      type: "gotcha",
-      label: "Batch DB Inserts",
-      status: "verified",
-      x: 32,
-      y: 42,
-      summary: "Never call db.query inside a Promise.all map loop in billing.ts; use bulkInsert helper instead.",
-      author: "agent_cursor"
-    }
-  ],
-  edges: [
-    { from: "file:src/auth/jwt.ts", to: "file:src/routes/auth.ts", relation: "imported_by" },
-    { from: "file:src/routes/auth.ts", to: "file:src/db/redis.ts", relation: "queries" },
-    { from: "decision:dec_001", to: "file:src/auth/jwt.ts", relation: "affects" },
-    { from: "decision:dec_001", to: "file:src/db/redis.ts", relation: "utilizes" },
-    { from: "gotcha:gotcha_002", to: "file:src/services/billing.ts", relation: "constrains" },
-    { from: "gotcha:gotcha_002", to: "file:src/db/postgres.ts", relation: "protects" },
-    { from: "file:src/services/billing.ts", to: "file:src/db/postgres.ts", relation: "queries" }
-  ]
-};
+  let width = (canvas.width = canvas.parentElement.offsetWidth);
+  let height = (canvas.height = canvas.parentElement.offsetHeight);
 
-const COMPACTOR_SCENARIOS = {
-  auth: {
-    unoptimizedTokens: "48,200",
-    optimizedTokens: "1,240",
-    reduction: "97% REDUCTION",
-    unoptimizedText: `// 12 full files loaded into context...
-// src/auth/jwt.ts (820 lines)
-// src/routes/auth.ts (1,240 lines)
-// src/db/postgres.ts (3,400 lines)
-// src/db/redis.ts (650 lines)
-// ... 43,000 more lines ...
-// Token cost: ~$0.15 per turn
-// Attention dilution: High (LLM misses earlier decisions)`,
-    optimizedText: `## CORTEX PROJECT CONTEXT SLICE [Query: "auth & token revocation"]
-- Framework: Next.js App Router + Prisma + Redis
-
-### Core Architectural Invariants
-- All form inputs must use custom TextInput component.
-- JWT verification occurs in middleware before controller dispatch.
-
-### Verified Decisions & Gotchas
-- [DECISION] Redis 24h TTL for token revocation to avoid Postgres locks.
-- [WARNING] Never decode token without signature verification check.
-
-### Module Interfaces
-- jwt.ts: verifyToken(token: string): Promise<Claims>
-- redis.ts: setWithExpiry(key: string, val: string, ttl: number): Promise<void>`
-  },
-  billing: {
-    unoptimizedTokens: "52,600",
-    optimizedTokens: "1,180",
-    reduction: "98% REDUCTION",
-    unoptimizedText: `// 15 full files loaded into context...
-// src/services/billing.ts (2,100 lines)
-// src/db/postgres.ts (3,400 lines)
-// prisma/schema.prisma (1,800 lines)
-// src/webhooks/stripe.ts (950 lines)
-// ... 44,000 more lines ...
-// Token cost: ~$0.16 per turn
-// Attention dilution: High`,
-    optimizedText: `## CORTEX PROJECT CONTEXT SLICE [Query: "billing & database batching"]
-- Framework: Next.js + Stripe SDK + PostgreSQL
-
-### Core Architectural Invariants
-- Always use bulkInsert helper for usage record ingests.
-- Stripe webhook signature verification must check raw request buffer.
-
-### Verified Decisions & Gotchas
-- [WARNING] Never map over arrays with db.insert without batchChunk helper.
-- [DECISION] Billing overages calculated on 1st of every month via cron worker.
-
-### Module Interfaces
-- billing.ts: processSubscription(subId: string): Promise<Invoice>`
-  },
-  event: {
-    unoptimizedTokens: "41,500",
-    optimizedTokens: "980",
-    reduction: "97% REDUCTION",
-    unoptimizedText: `// 10 full files loaded into context...
-// lib/models/event_ip_response.dart (450 lines)
-// lib/screens/event_details_page.dart (1,600 lines)
-// lib/blocs/event_bloc.dart (890 lines)
-// ... 38,000 more lines ...
-// Token cost: ~$0.13 per turn`,
-    optimizedText: `## CORTEX PROJECT CONTEXT SLICE [Query: "event IP branding"]
-- Framework: Flutter / Dart (Clean Architecture)
-
-### Core Architectural Invariants
-- Custom TextInput component located at lib/components/text_input.dart must be used.
-
-### Verified Decisions & Gotchas
-- [DECISION] EventIpResponse class contains 'sceneType' field ('ip' | 'venue'). Logic for displaying event IP branding (poster/logo) vs Event Title strictly depends on sceneType == 'ip'.
-
-### Module Interfaces
-- event_ip_response.dart: class EventIpResponse { String sceneType; String? posterUrl; }`
-  }
-};
-
-let activeNodeId = "decision:dec_001";
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderGraph();
-  setupCompactorScenarios();
-  setupIntegrationTabs();
-});
-
-// Render Dual-Layer Knowledge Graph
-function renderGraph() {
-  const container = document.getElementById('graph-nodes-layer');
-  if (!container) return;
-  container.innerHTML = '';
-
-  GRAPH_DATA.nodes.forEach(node => {
-    const el = document.createElement('div');
-    el.className = `g-node layer-${node.layer} ${node.id === activeNodeId ? 'active' : ''}`;
-    el.style.left = `${node.x}%`;
-    el.style.top = `${node.y}%`;
-    el.dataset.id = node.id;
-
-    const layerTag = node.layer === 'ast' ? 'AST // CODE' : 'EPISODIC // MEMORY';
-    el.innerHTML = `
-      <span class="gn-type">${layerTag}</span>
-      <div class="gn-title">${node.label}</div>
-      <div class="gn-meta">${node.type.toUpperCase()}</div>
-    `;
-
-    el.addEventListener('click', () => {
-      activeNodeId = node.id;
-      document.querySelectorAll('.g-node').forEach(n => n.classList.remove('active'));
-      el.classList.add('active');
-      updateInspector(node);
-      drawConnectors();
-    });
-
-    container.appendChild(el);
+  window.addEventListener('resize', () => {
+    if (!canvas.parentElement) return;
+    width = canvas.width = canvas.parentElement.offsetWidth;
+    height = canvas.height = canvas.parentElement.offsetHeight;
   });
 
-  setTimeout(() => drawConnectors(), 50);
-}
+  const count = Math.min(Math.floor((width * height) / 12000), 55);
+  const particles = [];
 
-function drawConnectors() {
-  const svg = document.getElementById('graph-svg-layer');
-  if (!svg) return;
-  svg.innerHTML = '';
-  const width = svg.clientWidth || 700;
-  const height = svg.clientHeight || 480;
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 2 + 1.2,
+      baseAlpha: Math.random() * 0.4 + 0.2
+    });
+  }
 
-  const nodeMap = new Map(GRAPH_DATA.nodes.map(n => [n.id, n]));
+  let mouseX = -1000;
+  let mouseY = -1000;
 
-  GRAPH_DATA.edges.forEach(edge => {
-    const fromNode = nodeMap.get(edge.from);
-    const toNode = nodeMap.get(edge.to);
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
 
-    if (fromNode && toNode) {
-      const x1 = (fromNode.x / 100) * width + 95;
-      const y1 = (fromNode.y / 100) * height + 30;
-      const x2 = (toNode.x / 100) * width + 95;
-      const y2 = (toNode.y / 100) * height + 30;
+  function render() {
+    ctx.clearRect(0, 0, width, height);
 
-      const isConnectedToActive = fromNode.id === activeNodeId || toNode.id === activeNodeId;
+    const dotColor = isDark ? '255, 255, 255' : '26, 115, 232';
+    const lineColor = isDark ? '255, 255, 255' : '170, 177, 204';
 
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      const cx1 = x1 + (x2 - x1) * 0.5;
-      const cy1 = y1;
-      const cx2 = x1 + (x2 - x1) * 0.5;
-      const cy2 = y2;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
 
-      path.setAttribute('d', `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`);
-      path.setAttribute('stroke', isConnectedToActive ? '#181816' : '#e6e5dd');
-      path.setAttribute('stroke-width', isConnectedToActive ? '2.5' : '1.5');
-      path.setAttribute('fill', 'none');
-      if (!isConnectedToActive) {
-        path.setAttribute('stroke-dasharray', '3 3');
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      // Mouse influence
+      const dx = mouseX - p.x;
+      const dy = mouseY - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        p.x -= (dx / dist) * 0.5;
+        p.y -= (dy / dist) * 0.5;
       }
 
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${dotColor}, ${p.baseAlpha})`;
+      ctx.fill();
+
+      // Connect nearby particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const d = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 110) * 0.18})`;
+          ctx.lineWidth = 0.75;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  render();
+}
+
+// =============================================================================
+// 2. DUAL-LAYER KNOWLEDGE GRAPH DATA & VISUALIZATION
+// =============================================================================
+const GRAPH_NODES = [
+  // Layer 1: AST Symbols
+  {
+    id: 'ast-token-svc',
+    label: 'TokenService',
+    layer: 'ast',
+    type: 'CLASS_EXPORT',
+    status: 'ACTIVE',
+    symbol: 'src/auth/token.service.ts::TokenService',
+    test: 'auth.test.ts',
+    x: 25,
+    y: 30,
+    notes: 'Handles JWT lifecycle, token issuance, session refresh, and revocation state in Redis.',
+    tokens: '180 tokens'
+  },
+  {
+    id: 'ast-auth-controller',
+    label: 'AuthController',
+    layer: 'ast',
+    type: 'HTTP_CONTROLLER',
+    status: 'ACTIVE',
+    symbol: 'src/auth/auth.controller.ts::AuthController',
+    test: 'api.spec.ts',
+    x: 65,
+    y: 22,
+    notes: 'Exposes /api/v1/auth endpoints. Enforces bearer schema and rate limits.',
+    tokens: '140 tokens'
+  },
+  {
+    id: 'ast-text-input',
+    label: 'TextInput Component',
+    layer: 'ast',
+    type: 'DESIGN_SYSTEM',
+    status: 'INVARIANT',
+    symbol: 'lib/components/text_input.dart::TextInput',
+    test: 'widget_test.dart',
+    x: 18,
+    y: 75,
+    notes: 'Custom UI component wrapping FormBuilderTextField with standard design styling.',
+    tokens: '95 tokens'
+  },
+  {
+    id: 'ast-event-ip',
+    label: 'EventIpResponse',
+    layer: 'ast',
+    type: 'SCHEMA_MODEL',
+    status: 'ACTIVE',
+    symbol: 'src/models/event.ts::EventIpResponse',
+    test: 'event.test.ts',
+    x: 75,
+    y: 78,
+    notes: 'Response model with sceneType ("ip" | "venue"). Branding renders when sceneType is "ip".',
+    tokens: '110 tokens'
+  },
+
+  // Layer 2: Episodic Memory Decisions & Invariants
+  {
+    id: 'mem-redis-revocation',
+    label: 'Redis Revocation Cache',
+    layer: 'memory',
+    type: 'DECISION',
+    status: 'VERIFIED',
+    symbol: 'src/auth/token.service.ts::TokenService',
+    test: 'auth.test.ts (exit 0)',
+    x: 42,
+    y: 48,
+    notes: 'JWT blacklisting stored in Redis cache with 15-minute sliding TTL to eliminate DB bottlenecks.',
+    tokens: '180 tokens'
+  },
+  {
+    id: 'mem-text-input-gotcha',
+    label: 'Never Use Raw TextField',
+    layer: 'invariant',
+    type: 'INVARIANT',
+    status: 'VERIFIED',
+    symbol: 'lib/components/text_input.dart',
+    test: 'linter.spec.ts',
+    x: 35,
+    y: 84,
+    notes: 'Global invariant: AI agents must never inject raw Flutter TextField; always use custom TextInput.',
+    tokens: '75 tokens'
+  },
+  {
+    id: 'mem-scene-type-rule',
+    label: 'Event IP Branding Logic',
+    layer: 'memory',
+    type: 'DECISION',
+    status: 'VERIFIED',
+    symbol: 'src/models/event.ts::EventIpResponse',
+    test: 'ip_branding.test.ts',
+    x: 82,
+    y: 45,
+    notes: 'Logic for displaying event IP branding (poster/logo) vs Event Title depends on sceneType being "ip".',
+    tokens: '90 tokens'
+  }
+];
+
+const GRAPH_EDGES = [
+  { from: 'ast-auth-controller', to: 'ast-token-svc' },
+  { from: 'ast-token-svc', to: 'mem-redis-revocation' },
+  { from: 'ast-text-input', to: 'mem-text-input-gotcha' },
+  { from: 'ast-event-ip', to: 'mem-scene-type-rule' },
+  { from: 'mem-redis-revocation', to: 'ast-auth-controller' }
+];
+
+function initGraphViewer() {
+  const container = document.getElementById('graph-nodes');
+  const svg = document.getElementById('graph-svg');
+  if (!container || !svg) return;
+
+  container.innerHTML = '';
+  svg.innerHTML = '';
+
+  const nodeMap = {};
+
+  GRAPH_NODES.forEach((node, idx) => {
+    const el = document.createElement('div');
+    el.className = `graph-node layer-${node.layer} ${idx === 4 ? 'active' : ''}`;
+    el.id = `node-${node.id}`;
+    el.style.left = `${node.x}%`;
+    el.style.top = `${node.y}%`;
+
+    el.innerHTML = `
+      <span class="node-indicator"></span>
+      <span>${node.label}</span>
+    `;
+
+    el.addEventListener('click', () => selectNode(node, el));
+    container.appendChild(el);
+    nodeMap[node.id] = { node, el, x: node.x, y: node.y };
+  });
+
+  // Render SVG connector curves
+  function drawEdges() {
+    svg.innerHTML = '';
+    const width = svg.clientWidth;
+    const height = svg.clientHeight;
+
+    GRAPH_EDGES.forEach((edge) => {
+      const from = nodeMap[edge.from];
+      const to = nodeMap[edge.to];
+      if (!from || !to) return;
+
+      const x1 = (from.x / 100) * width;
+      const y1 = (from.y / 100) * height;
+      const x2 = (to.x / 100) * width;
+      const y2 = (to.y / 100) * height;
+
+      const cx = (x1 + x2) / 2;
+      const cy = (y1 + y2) / 2 - 15;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`);
+      path.setAttribute('stroke', '#aab1cc');
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('stroke-opacity', '0.45');
+      path.setAttribute('stroke-dasharray', '4 4');
+      path.setAttribute('fill', 'none');
       svg.appendChild(path);
-    }
-  });
+    });
+  }
+
+  setTimeout(drawEdges, 100);
+  window.addEventListener('resize', drawEdges);
 }
 
-function updateInspector(node) {
-  if (!node) return;
-  document.getElementById('node-tag').textContent = `LAYER ${node.layer === 'ast' ? '1 // CODE AST' : '2 // EPISODIC MEMORY'}`;
-  document.getElementById('node-label').textContent = node.label;
-  document.getElementById('node-id').textContent = node.id;
-  document.getElementById('node-summary').textContent = node.summary;
+function selectNode(node, el) {
+  document.querySelectorAll('.graph-node').forEach((n) => n.classList.remove('active'));
+  if (el) el.classList.add('active');
 
-  const chipsContainer = document.getElementById('node-chips');
-  chipsContainer.innerHTML = '';
+  const inspType = document.getElementById('insp-type');
+  const inspTitle = document.getElementById('insp-title');
+  const inspStatusBox = document.getElementById('insp-status-box');
+  const inspSymbol = document.getElementById('insp-symbol');
+  const inspNotes = document.getElementById('insp-notes');
 
-  const relatedEdges = GRAPH_DATA.edges.filter(e => e.from === node.id || e.to === node.id);
-  if (relatedEdges.length === 0) {
-    chipsContainer.innerHTML = '<span class="chip">No immediate edge connections</span>';
+  if (inspType) inspType.textContent = `LAYER ${node.layer === 'ast' ? '1 // AST SYMBOL' : '2 // EPISODIC MEMORY'}`;
+  if (inspTitle) inspTitle.textContent = node.label;
+  if (inspSymbol) inspSymbol.textContent = node.symbol;
+  if (inspNotes) inspNotes.textContent = node.notes;
+
+  if (inspStatusBox) {
+    if (node.status === 'VERIFIED') {
+      inspStatusBox.style.borderLeftColor = 'var(--palette-emerald-600)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed verification suite <code>${node.test}</code>.`;
+    } else if (node.status === 'INVARIANT') {
+      inspStatusBox.style.borderLeftColor = 'var(--palette-blue-600)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--palette-blue-600);">INVARIANT</strong> — Core repository rule locked in knowledge graph.`;
+    } else {
+      inspStatusBox.style.borderLeftColor = 'var(--palette-amber-600)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--palette-amber-600);">ACTIVE</strong> — Synced with live AST index.`;
+    }
+  }
+}
+
+// =============================================================================
+// 3. WORKBENCH TAB SWITCHER
+// =============================================================================
+function switchWbTab(tabKey, btn) {
+  document.querySelectorAll('.wb-tab').forEach((t) => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  if (tabKey === 'ast') {
+    document.querySelectorAll('.graph-node.layer-ast').forEach((n) => (n.style.opacity = '1'));
+    document.querySelectorAll('.graph-node.layer-memory, .graph-node.layer-invariant').forEach((n) => (n.style.opacity = '0.2'));
+  } else if (tabKey === 'memory') {
+    document.querySelectorAll('.graph-node.layer-ast').forEach((n) => (n.style.opacity = '0.2'));
+    document.querySelectorAll('.graph-node.layer-memory, .graph-node.layer-invariant').forEach((n) => (n.style.opacity = '1'));
   } else {
-    relatedEdges.forEach(e => {
-      const target = e.from === node.id ? e.to : e.from;
-      const chip = document.createElement('span');
-      chip.className = 'chip';
-      chip.textContent = `${e.relation} -> ${target.replace('file:', '')}`;
-      chipsContainer.appendChild(chip);
-    });
+    document.querySelectorAll('.graph-node').forEach((n) => (n.style.opacity = '1'));
   }
 }
 
-// Compactor Scenario Switcher
-function setupCompactorScenarios() {
-  const pills = document.querySelectorAll('.sc-pill');
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const scKey = pill.dataset.scenario;
-      const data = COMPACTOR_SCENARIOS[scKey] || COMPACTOR_SCENARIOS.auth;
+// =============================================================================
+// 4. CONTEXT COMPACTOR SIMULATOR SCENARIOS
+// =============================================================================
+const SCENARIOS = {
+  auth: {
+    rawTokens: '48,200 TOKENS',
+    compactTokens: '1,180 TOKENS',
+    ratio: '97.5%',
+    latency: '< 1.2ms',
+    rawCode: `// RAW AGENT DUMP (8 FULL FILES DUMPED INTO CONTEXT)
+// 1. src/auth/token.service.ts (840 lines)
+// 2. src/auth/auth.controller.ts (620 lines)
+// 3. src/auth/strategies/jwt.strategy.ts (380 lines)
+// 4. src/user/user.entity.ts (450 lines)
+// 5. src/user/user.repository.ts (510 lines)
+// 6. src/redis/redis.provider.ts (310 lines)
+// 7. src/config/auth.config.ts (220 lines)
+// 8. test/auth/auth.e2e.spec.ts (950 lines)
 
-      document.getElementById('tok-unopt').textContent = data.unoptimizedTokens;
-      document.getElementById('tok-opt').textContent = data.optimizedTokens;
-      document.querySelector('.token-meter.green .tok-lbl').textContent = `TOKENS (${data.reduction})`;
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { RedisService } from '../redis/redis.provider';
+... [4,200 lines truncated across 8 files] ...`,
+    compactCode: `### CORTEX SUB-2.5K COMPACTED SLICE // TARGET: TokenService
 
-      document.getElementById('unopt-code-view').querySelector('code').textContent = data.unoptimizedText;
-      document.getElementById('compact-slice-code').textContent = data.optimizedText;
-    });
-  });
+### 1. REPOSITORY INVARIANTS & GOTCHAS
+- [INVARIANT] TokenService: Redis cache required for token revocation (TTL 15m).
+- [GOTCHA] TextInput: Always use custom wrapper at lib/components/text_input.dart.
+- [RULE] sceneType "ip" enables event branding poster display.
+
+### 2. 2-HOP CODEBASE BLUEPRINTS (Signatures Only)
+export interface TokenService {
+  revokeToken(userId: string, jti: string): Promise<boolean>;
+  validateSession(token: string): Promise<SessionPayload>;
+  refreshTokens(refreshToken: string): Promise<TokenPair>;
 }
 
-// Integration Tabs
-function setupIntegrationTabs() {
-  const tabs = document.querySelectorAll('.m-tab');
-  const title = document.getElementById('term-title');
-  const body = document.getElementById('term-body');
-
-  const configs = {
-    claude: {
-      title: 'claude_desktop_config.json',
-      code: `{
-  "mcpServers": {
-    "cortex-memory": {
-      "command": "npx",
-      "args": ["-y", "cortex-memory", "mcp"]
-    }
-  }
-}`
-    },
-    cursor: {
-      title: '.cursor/mcp.json',
-      code: `{
-  "mcpServers": {
-    "cortex-memory": {
-      "command": "npx",
-      "args": ["-y", "cortex-memory", "mcp"]
-    }
-  }
-}`
-    },
-    cline: {
-      title: 'cline_mcp_settings.json',
-      code: `{
-  "mcpServers": {
-    "cortex-memory": {
-      "command": "npx",
-      "args": ["-y", "cortex-memory", "mcp"],
-      "disabled": false,
-      "autoApprove": ["cortex_get_context", "cortex_record_decision"]
-    }
-  }
-}`
-    },
-    sdk: {
-      title: 'Node.js SDK',
-      code: `import { KnowledgeGraphEngine, ContextCompactor } from 'cortex-memory';
-
-const engine = new KnowledgeGraphEngine();
-const compactor = new ContextCompactor(engine);
-
-// Extract sub-2.5k token compacted context slice
-const slice = compactor.compact('refactor payment webhooks');
-console.log(slice.rawMarkdown);`
-    }
-  };
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const cfg = configs[tab.dataset.tab] || configs.claude;
-      title.textContent = cfg.title;
-      body.textContent = cfg.code;
-    });
-  });
+export interface AuthController {
+  postLogout(req: Request): Promise<{ success: boolean }>;
 }
 
-window.copyCli = function() {
-  navigator.clipboard.writeText('npx cortex-memory init').then(() => {
-    alert('Copied "npx cortex-memory init" to clipboard.');
-  });
+### 3. ACTIVE BLAST RADIUS
+- Downstream Callers: AuthController.postLogout -> TokenService.revokeToken
+- Upstream Dependencies: RedisProvider.setex -> TokenService`
+  },
+
+  payment: {
+    rawTokens: '39,400 TOKENS',
+    compactTokens: '920 TOKENS',
+    ratio: '97.6%',
+    latency: '< 0.9ms',
+    rawCode: `// RAW AGENT DUMP (6 FULL PAYMENT & STRIPE FILES)
+// 1. src/billing/stripe.webhook.ts (740 lines)
+// 2. src/billing/subscription.service.ts (1,120 lines)
+// 3. src/billing/invoice.generator.ts (650 lines)
+// 4. src/models/customer.model.ts (410 lines)
+// 5. src/integrations/tax.service.ts (530 lines)
+// 6. test/billing/webhook.spec.ts (890 lines)
+
+... [3,400 lines of boilerplate, internal loops & legacy handlers] ...`,
+    compactCode: `### CORTEX SUB-2.5K COMPACTED SLICE // TARGET: StripeWebhook
+
+### 1. REPOSITORY INVARIANTS & GOTCHAS
+- [INVARIANT] Stripe Webhooks must verify signature with STRIPE_WEBHOOK_SECRET before body parsing.
+- [IDEMPOTENCY] Record event_id to PostgreSQL idempotency table before initiating invoice dispatch.
+
+### 2. 2-HOP CODEBASE BLUEPRINTS
+export interface StripeWebhookHandler {
+  handleInvoicePaid(event: Stripe.Event): Promise<InvoiceResult>;
+  handleSubscriptionCanceled(event: Stripe.Event): Promise<void>;
+}
+
+### 3. ACTIVE BLAST RADIUS
+- Downstream: SubscriptionService.markActive -> StripeWebhookHandler
+- Security Gate: verifyStripeSignature(rawBody, sig)`
+  },
+
+  database: {
+    rawTokens: '52,100 TOKENS',
+    compactTokens: '1,420 TOKENS',
+    ratio: '97.3%',
+    latency: '< 1.4ms',
+    rawCode: `// RAW AGENT DUMP (9 DATABASE & MIGRATION FILES)
+// 1. src/database/migrations/20260920_user_sessions.ts (380 lines)
+// 2. src/database/schema.prisma (1,400 lines)
+// 3. src/database/connection.pool.ts (290 lines)
+// 4. src/models/session.entity.ts (440 lines)
+... [5,100 lines of migration dumps & type definitions] ...`,
+    compactCode: `### CORTEX SUB-2.5K COMPACTED SLICE // TARGET: SessionSchema
+
+### 1. REPOSITORY INVARIANTS & GOTCHAS
+- [INVARIANT] Never run schema migrations without transactional locks (pg_advisory_lock).
+- [GOTCHA] Foreign key onDelete must cascade only to soft-deletable child tables.
+
+### 2. 2-HOP CODEBASE BLUEPRINTS
+export interface SessionEntity {
+  id: string;
+  userId: string;
+  expiresAt: Date;
+  metadata: Record<string, unknown>;
+}
+
+### 3. ACTIVE BLAST RADIUS
+- Migrations: 20260920_user_sessions -> SessionEntity`
+  }
 };
 
-window.copySnippet = function() {
-  const code = document.getElementById('term-body').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    alert('Configuration snippet copied to clipboard.');
-  });
-};
+function switchScenario(scenarioKey, btn) {
+  document.querySelectorAll('.scenario-pill').forEach((p) => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 
-window.addEventListener('resize', () => {
-  drawConnectors();
+  const scenario = SCENARIOS[scenarioKey];
+  if (!scenario) return;
+
+  const rawTokens = document.getElementById('raw-tokens');
+  const compactTokens = document.getElementById('compact-tokens');
+  const rawCodeBox = document.getElementById('raw-code-box');
+  const compactCodeBox = document.getElementById('compact-code-box');
+  const metricRatio = document.getElementById('metric-ratio');
+  const metricLatency = document.getElementById('metric-latency');
+
+  if (rawTokens) rawTokens.textContent = scenario.rawTokens;
+  if (compactTokens) compactTokens.textContent = scenario.compactTokens;
+  if (rawCodeBox) rawCodeBox.textContent = scenario.rawCode;
+  if (compactCodeBox) compactCodeBox.textContent = scenario.compactCode;
+  if (metricRatio) metricRatio.textContent = scenario.ratio;
+  if (metricLatency) metricLatency.textContent = scenario.latency;
+}
+
+// =============================================================================
+// 5. CLIPBOARD HELPER
+// =============================================================================
+function copyCliCommand() {
+  const text = document.getElementById('cli-command-text')?.innerText || 'npx cortex-graph init';
+  navigator.clipboard.writeText(text).then(() => {
+    const label = document.getElementById('cli-copy-label');
+    if (label) {
+      label.textContent = 'COPIED!';
+      label.style.background = 'var(--palette-emerald-50)';
+      label.style.color = 'var(--palette-emerald-600)';
+      setTimeout(() => {
+        label.textContent = 'COPY';
+        label.style.background = '#ffffff';
+        label.style.color = 'var(--palette-grey-800)';
+      }, 2000);
+    }
+  });
+}
+
+// =============================================================================
+// 6. INITIALIZATION ON DOM READY
+// =============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initParticles('morphing-particles-canvas', false);
+  initParticles('liftoff-particles-canvas', true);
+  initGraphViewer();
+  switchScenario('auth', document.querySelector('.scenario-pill'));
 });

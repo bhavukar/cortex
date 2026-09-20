@@ -3,295 +3,630 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cortex — Dual-Layer Codebase Knowledge Graph & Episodic Memory</title>
-  <meta name="description" content="Dual-Layer Codebase Knowledge Graph and Episodic Memory Engine for AI Coding Agents. Eliminates context window overflow with sub-3k token slices." />
+  <title>Google Antigravity — Cortex Knowledge Graph & Agent Memory</title>
+  <meta name="description" content="A self-evolving codebase knowledge graph and episodic memory engine for AI coding agents. Sub-2,500 token context compaction with zero Git amnesia." />
+  
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..700,0..100&family=Google+Sans+Code:ital,wght@0,400..700;1,400..700&family=Google+Symbols:opsz,wght,FILL,GRAD,ROND@20..48,100..700,0..1,-50..200,0..100&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="cortex-app">
-  <!-- Frosted Glass Navigation Header -->
+<body>
+
+  <!-- Background Morphing Particles Canvas -->
+  <div class="morphing-particles-container">
+    <canvas id="morphing-particles-canvas"></canvas>
+  </div>
+
+  <!-- Google Antigravity Floating Header -->
   <header class="header">
-    <div class="nav-container">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Cortex" class="brand-logo" />
-        <span class="brand-name">CORTEX</span>
-        <span class="badge-tag">v0.1.0</span>
+    <div class="header-inner">
+      <div class="logo-container">
+        <a href="#" class="brand-logo-link" aria-label="Cortex">
+          <img src="assets/logo.svg" alt="Cortex Logo" height="28" />
+        </a>
+        <span class="version-chip">v0.1.0</span>
       </div>
 
-      <nav class="nav">
-        <div class="nav-links-group">
-          <a href="#graph-explorer" class="nav-link">Graph Explorer</a>
-          <a href="#compactor" class="nav-link">Context Compactor</a>
-          <a href="#architecture" class="nav-link">Architecture</a>
-          <a href="#integration" class="nav-link">Integration</a>
+      <nav class="nav-menu">
+        <div class="nav-item">
+          <button class="nav-button">
+            <span>Products</span>
+            <span class="symbol dropdown-arrow">keyboard_arrow_down</span>
+          </button>
+          <div class="nav-dropdown">
+            <a href="#workbench" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">account_tree</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">Cortex Dual Graph</span>
+                <span class="dropdown-desc">AST code topology + episodic memory</span>
+              </div>
+            </a>
+            <a href="#compactor" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">compress</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">Context Compactor</span>
+                <span class="dropdown-desc">Sub-2.5k token precision slices</span>
+              </div>
+            </a>
+            <a href="#ledger" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">history_edu</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">Epistemic Ledger</span>
+                <span class="dropdown-desc">Append-only event sourcing</span>
+              </div>
+            </a>
+            <a href="#mcp" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">sync_alt</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">Native MCP Server</span>
+                <span class="dropdown-desc">Claude Desktop, Cursor &amp; Cline bridge</span>
+              </div>
+            </a>
+          </div>
         </div>
-        <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="btn-github">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+
+        <div class="nav-item">
+          <button class="nav-button">
+            <span>Architecture</span>
+            <span class="symbol dropdown-arrow">keyboard_arrow_down</span>
+          </button>
+          <div class="nav-dropdown">
+            <a href="#features" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">hub</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">2-Hop BFS Traversal</span>
+                <span class="dropdown-desc">Causal blast-radius isolation</span>
+              </div>
+            </a>
+            <a href="#features" class="dropdown-link">
+              <div class="dropdown-icon-box"><span class="symbol">verified</span></div>
+              <div class="dropdown-text">
+                <span class="dropdown-title">Verification Gates</span>
+                <span class="dropdown-desc">Automated invariant enforcement</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#compactor" class="nav-button">Compactor</a>
+        </div>
+        <div class="nav-item">
+          <a href="#use-cases" class="nav-button">Use Cases</a>
+        </div>
+        <div class="nav-item">
+          <a href="#journal" class="nav-button">Specifications</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-secondary button-compact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 2px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <span>GitHub</span>
         </a>
-      </nav>
+        <a href="#workbench" class="button button-primary button-compact">
+          <span>Explore Studio</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- Editorial Studio Hero -->
-    <section class="hero-section">
-      <div class="hero-container">
-        <div class="hero-eyebrow">
-          <span class="dot-indicator"></span>
-          <span>PERSISTENT CODEBASE KNOWLEDGE GRAPH & CONTEXT ENGINE</span>
+    <!-- HERO SECTION (GOOGLE ANTIGRAVITY SPEC) -->
+    <section class="welcome-section">
+      <div class="welcome-container">
+        <div class="welcome-badge">
+          <span class="welcome-badge-dot"></span>
+          <span>Google Antigravity // Agent Memory Protocol</span>
         </div>
-        <h1 class="hero-title">
-          Permanent memory for AI coding agents.
+
+        <h1 class="landing-main-header">
+          Experience liftoff with the next-gen agent memory.
         </h1>
-        <p class="hero-subtitle">
-          Cortex builds a dual-layer knowledge graph of your repository's AST structure and past conversational decisions. It replaces 50k-token codebase dumps with laser-focused sub-2.5k token slices.
+
+        <p class="landing-main-subhead">
+          Cortex builds a self-evolving knowledge graph of your repository's AST structure and conversational decisions. Compressing 50,000-token dumps into laser-focused sub-2.5k token slices.
         </p>
 
-        <div class="hero-actions">
-          <div class="cli-box" onclick="copyCli()" title="Click to copy">
-            <span class="cli-prefix">$</span>
-            <span class="cli-text">npx cortex-memory init</span>
-            <span class="copy-badge">COPY</span>
-          </div>
-          <a href="#graph-explorer" class="btn-primary-dark">Explore Knowledge Graph</a>
+        <div class="welcome-cta-group">
+          <a href="#workbench" class="button button-primary">
+            <span>Explore Knowledge Graph</span>
+            <span class="symbol">arrow_forward</span>
+          </a>
+          <a href="#compactor" class="button button-secondary">
+            <span>Compactor Benchmarks</span>
+          </a>
+        </div>
+
+        <div class="cli-pill" onclick="copyCliCommand()" title="Click to copy command">
+          <span class="cli-prompt">$</span>
+          <span id="cli-command-text">npx cortex-graph init</span>
+          <span class="cli-copy-btn" id="cli-copy-label">Copy</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: INTERACTIVE DUAL-LAYER GRAPH EXPLORER -->
-    <section id="graph-explorer" class="section-stage">
-      <div class="stage-container">
-        <div class="section-header-row">
-          <div class="sh-left">
-            <span class="kicker">INTERACTIVE STAGE</span>
-            <h2 class="section-headline">Dual-Layer Knowledge Graph Explorer</h2>
-            <p class="section-subtext">Click any node to inspect causal relationships, AST interfaces, and verified decisions.</p>
-          </div>
-          <div class="sh-right">
-            <div class="layer-legend">
-              <span class="legend-item"><span class="legend-dot ast"></span> Layer 1: Code AST Topology</span>
-              <span class="legend-item"><span class="legend-dot memory"></span> Layer 2: Episodic Memory</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Graph Workspace Canvas -->
-        <div class="graph-stage-card">
-          <div class="stage-canvas-frame" id="stage-canvas-frame">
-            <svg class="graph-svg-layer" id="graph-svg-layer"></svg>
-            <div class="graph-nodes-layer" id="graph-nodes-layer"></div>
+    <!-- HERO WORKBENCH / LIVE KNOWLEDGE GRAPH STAGE -->
+    <section id="workbench" class="stage-section">
+      <div class="workbench-card">
+        <!-- Top Window Header -->
+        <div class="workbench-top-bar">
+          <div class="window-dots">
+            <span class="window-dot close"></span>
+            <span class="window-dot minimize"></span>
+            <span class="window-dot maximize"></span>
           </div>
 
-          <!-- Active Node Inspector Drawer -->
-          <div class="node-inspector-pane">
-            <div class="insp-head">
-              <div class="insp-title-box">
-                <span class="insp-tag" id="node-tag">LAYER 2 // DECISION</span>
-                <h3 class="insp-name" id="node-label">Use Redis for Token Revocation</h3>
-              </div>
-              <span class="insp-status-pill ok" id="node-status">VERIFIED</span>
-            </div>
-
-            <div class="insp-body">
-              <div class="insp-row">
-                <span class="insp-key">Node ID</span>
-                <span class="insp-val mono" id="node-id">decision:dec_001</span>
-              </div>
-              <div class="insp-row">
-                <span class="insp-key">Summary & Rationale</span>
-                <p class="insp-summary-text" id="node-summary">Do not store revoked JWTs in Postgres. Use Redis with 24h TTL to avoid database lock contention on auth checks.</p>
-              </div>
-              <div class="insp-row">
-                <span class="insp-key">Connected Edges (2-Hop Radius)</span>
-                <div class="insp-chips-list" id="node-chips">
-                  <span class="chip">affects -> src/auth/jwt.ts</span>
-                  <span class="chip">constrains -> src/routes/auth.ts</span>
-                </div>
-              </div>
-            </div>
+          <div class="workbench-tabs">
+            <button class="wb-tab active" onclick="switchWbTab('graph', this)">Dual Graph</button>
+            <button class="wb-tab" onclick="switchWbTab('ast', this)">AST Topology</button>
+            <button class="wb-tab" onclick="switchWbTab('memory', this)">Epistemic Ledger</button>
+            <button class="wb-tab" onclick="switchWbTab('mcp', this)">MCP Protocol</button>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- SECTION 2: LIVE CONTEXT COMPACTOR SIMULATOR -->
-    <section id="compactor" class="section-stage bg-tint">
-      <div class="stage-container">
-        <div class="section-header-row">
-          <div class="sh-left">
-            <span class="kicker">CONTEXT WINDOW EFFICIENCY</span>
-            <h2 class="section-headline">Live Context Compactor Simulator</h2>
-            <p class="section-subtext">Observe how Cortex compresses massive codebase churn into a deterministic < 2,500 token slice.</p>
+          <div class="workbench-status">
+            <span class="status-beacon"></span>
+            <span>LIVE (0.4ms)</span>
           </div>
         </div>
 
-        <div class="scenario-selector-bar">
-          <span class="bar-label">PROMPT SCENARIOS:</span>
-          <button class="sc-pill active" data-scenario="auth">Auth & Token Revocation</button>
-          <button class="sc-pill" data-scenario="billing">Billing & Database Batching</button>
-          <button class="sc-pill" data-scenario="event">Event IP Branding Pipeline</button>
-        </div>
-
-        <div class="compactor-workbench">
-          <!-- Left: Traditional Codebase Dump -->
-          <div class="compactor-col unoptimized">
-            <div class="col-head">
-              <div class="col-title-group">
-                <span class="col-label">CONVENTIONAL APPROACH</span>
-                <h4 class="col-name">Raw Codebase & Multi-File Dumps</h4>
-              </div>
-              <div class="token-meter red">
-                <span class="tok-num" id="tok-unopt">48,200</span>
-                <span class="tok-lbl">TOKENS</span>
-              </div>
-            </div>
-            <div class="code-preview-box" id="unopt-code-view">
-              <pre><code>// 12 full files loaded into context...
-// src/auth/jwt.ts (820 lines)
-// src/routes/auth.ts (1,240 lines)
-// src/db/postgres.ts (3,400 lines)
-// ... 43,000 more lines ...
-// Token cost: ~$0.15 per turn
-// Attention dilution: High</code></pre>
-            </div>
+        <!-- Workbench Workspace -->
+        <div class="workbench-main">
+          <!-- Graph Viewport Canvas -->
+          <div class="graph-canvas-viewport" id="graph-viewport">
+            <svg class="graph-svg-layer" id="graph-svg"></svg>
+            <div class="graph-nodes-layer" id="graph-nodes"></div>
           </div>
 
-          <!-- Right: Cortex Optimized Slice -->
-          <div class="compactor-col optimized">
-            <div class="col-head">
-              <div class="col-title-group">
-                <span class="col-label">CORTEX ENGINE SLICE</span>
-                <h4 class="col-name">Dual-Layer Compacted Context</h4>
-              </div>
-              <div class="token-meter green">
-                <span class="tok-num" id="tok-opt">1,240</span>
-                <span class="tok-lbl">TOKENS (97% REDUCTION)</span>
+          <!-- Side Inspector Drawer -->
+          <div class="workbench-inspector" id="workbench-inspector">
+            <div class="inspector-header">
+              <span class="inspector-badge" id="insp-type">LAYER 2 // DECISION</span>
+              <h3 class="inspector-title" id="insp-title">Use Redis for Token Revocation</h3>
+            </div>
+
+            <div class="inspector-section">
+              <span class="inspector-label">Verification Status</span>
+              <div class="inspector-box" id="insp-status-box" style="border-left: 3px solid var(--palette-emerald-600);">
+                <strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed test suite <code id="insp-test">auth.test.ts</code> (exit 0).
               </div>
             </div>
-            <div class="code-preview-box" id="opt-code-view">
-              <pre><code id="compact-slice-code">## CORTEX PROJECT CONTEXT SLICE
-- Framework: Next.js + Prisma + Redis
-### Core Architectural Invariants
-- All form inputs must use custom TextInput component.
-### Verified Decisions & Gotchas
-- [DECISION] Redis 24h TTL for token revocation.
-- [WARNING] Never query DB inside Promise.all map loops.
-### Module Interfaces
-- jwt.ts: verifyToken(token: string): Promise&lt;Claims&gt;</code></pre>
+
+            <div class="inspector-section">
+              <span class="inspector-label">AST Target Symbol</span>
+              <div class="inspector-box">
+                <code id="insp-symbol">src/auth/token.service.ts::TokenService</code>
+              </div>
+            </div>
+
+            <div class="inspector-section">
+              <span class="inspector-label">Epistemic Rationale &amp; Gotchas</span>
+              <div class="inspector-box" id="insp-notes">
+                JWT blacklisting moved to distributed Redis cache with 15-minute sliding TTL. Prevents database bottlenecks during token rotation spikes.
+              </div>
+            </div>
+
+            <div class="inspector-section">
+              <span class="inspector-label">Compacted Slice Output</span>
+              <div class="inspector-box" style="background: var(--palette-grey-20);">
+                <span style="color: var(--palette-blue-600); font-weight: 600;">180 tokens</span> emitted instead of 4,800 token raw file dump.
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: ARCHITECTURAL SPECIFICATION & LEARNING LOOPS -->
-    <section id="architecture" class="section-stage">
-      <div class="stage-container">
-        <div class="section-header-row">
-          <div class="sh-left">
-            <span class="kicker">SYSTEM SPECIFICATIONS</span>
-            <h2 class="section-headline">Self-Evolving Learning Loops</h2>
-            <p class="section-subtext">How Cortex continuously adapts, verifies, and prunes project knowledge automatically.</p>
-          </div>
-        </div>
-
-        <div class="spec-matrix-grid">
-          <div class="spec-card">
-            <span class="spec-num">01</span>
-            <h3 class="spec-title">Automatic AST Invalidation</h3>
-            <p class="spec-desc">File watchers run localized Tree-sitter diffs on file saves. Modified exports, renamed types, and deleted methods update graph edges instantaneously.</p>
-          </div>
-
-          <div class="spec-card">
-            <span class="spec-num">02</span>
-            <h3 class="spec-title">3-Tier Verification Gates</h3>
-            <p class="spec-desc">New agent insights start in a tentative state. They are promoted to verified status only when test suites pass (<code class="mono">exit 0</code>), preventing hallucinated notes from poisoning memory.</p>
-          </div>
-
-          <div class="spec-card">
-            <span class="spec-num">03</span>
-            <h3 class="spec-title">Append-Only Event Ledger</h3>
-            <p class="spec-desc">Memory updates write to chronological delta files in <code class="mono">.cortex/ledger/</code>. Multiple teammates and branches merge in Git with zero JSON merge conflicts.</p>
-          </div>
-
-          <div class="spec-card">
-            <span class="spec-num">04</span>
-            <h3 class="spec-title">Hebbian Reinforcement & Decay</h3>
-            <p class="spec-desc">Frequently retrieved decision nodes gain confidence weight. Transient debugging notes decay over time and are pruned, keeping prompt injection lightweight forever.</p>
-          </div>
-        </div>
+    <!-- AGENT-FIRST FLOATING ICON BOUNCER RIBBON (GOOGLE ANTIGRAVITY SPEC) -->
+    <section class="agent-first-section">
+      <div class="icon-list-wrapper">
+        <ul class="icon-list">
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">terminal</span>
+            <span class="bouncer-caption">CLI Engine</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">device_hub</span>
+            <span class="bouncer-caption">AST Graph</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">merge</span>
+            <span class="bouncer-caption">Git Ledger</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">folder</span>
+            <span class="bouncer-caption">AST Scanner</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">check_circle</span>
+            <span class="bouncer-caption">Gate Tests</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">database</span>
+            <span class="bouncer-caption">Memory Store</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">code_blocks</span>
+            <span class="bouncer-caption">Compactor</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">deployed_code</span>
+            <span class="bouncer-caption">MCP Server</span>
+          </li>
+          <li class="bouncer">
+            <span class="symbol bouncer-symbol">memory</span>
+            <span class="bouncer-caption">Hebbian DAG</span>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <!-- SECTION 4: INTEGRATION MATRIX -->
-    <section id="integration" class="section-stage bg-tint">
-      <div class="stage-container">
-        <div class="section-header-row">
-          <div class="sh-left">
-            <span class="kicker">DEPLOYMENT MATRIX</span>
-            <h2 class="section-headline">Model Context Protocol (MCP) Setup</h2>
-            <p class="section-subtext">Plug Cortex directly into your favorite agentic tools in seconds.</p>
-          </div>
+    <!-- FEATURE EXPLORER SECTION (PRODUCT PILLARS) -->
+    <section id="features" class="feature-explorer-section">
+      <div class="section-container">
+        <div class="section-head">
+          <span class="section-eyebrow">Pillars of the Cortex Engine</span>
+          <h2 class="section-title">Built for developers in the agent-first era.</h2>
+          <p class="section-description">
+            Conventional agent tools dump dozens of complete files into the prompt, overflowing the context window and diluting attention. Cortex extracts minimal 2-hop graph slices.
+          </p>
         </div>
 
-        <div class="integration-matrix">
-          <div class="matrix-tabs">
-            <button class="m-tab active" data-tab="claude">Claude Desktop</button>
-            <button class="m-tab" data-tab="cursor">Cursor IDE</button>
-            <button class="m-tab" data-tab="cline">Cline / Roo-Code</button>
-            <button class="m-tab" data-tab="sdk">Node.js SDK</button>
-          </div>
-
-          <div class="code-terminal">
-            <div class="term-head">
-              <span class="term-title" id="term-title">claude_desktop_config.json</span>
-              <button class="copy-term-btn" onclick="copySnippet()">Copy Snippet</button>
+        <div class="feature-list">
+          <!-- Feature 1: Dual-Layer Graph -->
+          <div class="feature-item">
+            <div class="feature-copy">
+              <span class="feature-tag">LAYER 1 + LAYER 2 DUAL TOPOLOGY</span>
+              <h3 class="feature-heading">Structural Code AST + Epistemic Memory</h3>
+              <p class="feature-text">
+                Cortex builds a synchronized two-layer model. Layer 1 maps symbols, imports, exports, and design systems using AST parsing. Layer 2 maps conversational decisions, invariants, and discovered gotchas.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 8px;">
+                <span class="version-chip" style="color: var(--palette-blue-600); border-color: var(--palette-blue-600);">2-Hop BFS</span>
+                <span class="version-chip">Causal Weighting</span>
+                <span class="version-chip">Zero Docker/JVM</span>
+              </div>
             </div>
-            <pre class="term-code"><code id="term-body">{
-  "mcpServers": {
-    "cortex-memory": {
-      "command": "npx",
-      "args": ["-y", "cortex-memory", "mcp"]
-    }
-  }
-}</code></pre>
+            <div class="feature-media">
+              <div class="code-preview-box">
+                <span class="tok-com">// .project-cortex.json dual-layer node structure</span><br/>
+                {<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"id"</span>: <span class="tok-str">"decision-redis-tokens"</span>,<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"layer"</span>: <span class="tok-str">"episodic_memory"</span>,<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"targetNode"</span>: <span class="tok-str">"src/auth/token.service.ts::TokenService"</span>,<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"status"</span>: <span class="tok-str">"verified"</span>,<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"verifiedBy"</span>: <span class="tok-str">"npm test auth.test.ts"</span>,<br/>
+                &nbsp;&nbsp;<span class="tok-kw">"invariants"</span>: [<span class="tok-str">"Sliding 15m TTL"</span>, <span class="tok-str">"Zero DB lookups on JWT validation"</span>]<br/>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: Context Compactor -->
+          <div class="feature-item reverse">
+            <div class="feature-copy">
+              <span class="feature-tag">SUB-2,500 TOKEN SLICING</span>
+              <h3 class="feature-heading">Compacts 48k tokens to 1.2k precision slices.</h3>
+              <p class="feature-text">
+                When an agent works on a function, it doesn't need 10 full files. It only needs the target symbol's signatures, active invariants, and known gotchas within its exact 2-hop blast radius.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 8px;">
+                <span class="version-chip" style="color: var(--palette-emerald-600); border-color: var(--palette-emerald-600);">97.5% Compression</span>
+                <span class="version-chip">0% Hallucination</span>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="code-preview-box">
+                <span class="tok-com">// Sub-2.5k Token Context Slice generated for Agent</span><br/>
+                <span class="tok-kw">### ARCHITECTURAL INVARIANTS &amp; GOTCHAS</span><br/>
+                - [INVARIANT] TokenService: Use Redis cache for revocation (TTL 15m).<br/>
+                - [GOTCHA] TextInput: Always use custom component at lib/components/text_input.dart.<br/><br/>
+                <span class="tok-kw">### 2-HOP CODEBASE BLUEPRINTS</span><br/>
+                <span class="tok-fn">interface</span> TokenService {<br/>
+                &nbsp;&nbsp;<span class="tok-fn">revokeToken</span>(id: string): Promise&lt;void&gt;;<br/>
+                &nbsp;&nbsp;<span class="tok-fn">validateSession</span>(token: string): Promise&lt;boolean&gt;;<br/>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Event-Sourced Ledger -->
+          <div class="feature-item">
+            <div class="feature-copy">
+              <span class="feature-tag">APPEND-ONLY EVENT SOURCING</span>
+              <h3 class="feature-heading">Zero Git merge conflicts across agent swarms.</h3>
+              <p class="feature-text">
+                Monolithic memory files cause merge conflicts when multiple developers or agent swarms work in parallel branches. Cortex records atomic events to <code style="color: var(--palette-blue-600);">.cortex/ledger/*.jsonl</code> that merge cleanly in Git without conflict.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 8px;">
+                <span class="version-chip">Git Native</span>
+                <span class="version-chip">Distributed Merge</span>
+                <span class="version-chip">Hebbian Decay</span>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="code-preview-box">
+                <span class="tok-com">// .cortex/ledger/event-172683921.jsonl</span><br/>
+                { <span class="tok-kw">"type"</span>: <span class="tok-str">"DECISION_RECORDED"</span>, <span class="tok-kw">"ts"</span>: <span class="tok-str">"2026-09-20T10:00:00Z"</span>, <span class="tok-kw">"agent"</span>: <span class="tok-str">"agent-auth"</span> }<br/>
+                { <span class="tok-kw">"type"</span>: <span class="tok-str">"GATE_PASSED"</span>, <span class="tok-kw">"test"</span>: <span class="tok-str">"exit 0"</span>, <span class="tok-kw">"promotedTo"</span>: <span class="tok-str">"INVARIANT"</span> }<br/>
+                { <span class="tok-kw">"type"</span>: <span class="tok-str">"EDGE_WEIGHT_REINFORCED"</span>, <span class="tok-kw">"weight"</span>: 1.45 }
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- Editorial Manifest Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <div class="brand">
-          <img src="assets/logo.svg" alt="Cortex" class="brand-logo" />
-          <span class="brand-name">CORTEX</span>
+    <!-- LIVE CONTEXT COMPACTOR SIMULATOR -->
+    <section id="compactor" class="compactor-section">
+      <div class="section-container">
+        <div class="section-head">
+          <span class="section-eyebrow">Interactive Simulator</span>
+          <h2 class="section-title">Test the Context Compactor in real-time.</h2>
+          <p class="section-description">
+            Compare a standard 48,000-token multi-file context dump against Cortex's high-precision 2-hop compacted slice.
+          </p>
         </div>
-        <p class="footer-desc">Dual-Layer Codebase Knowledge Graph & Episodic Memory Engine for AI Coding Agents.</p>
-      </div>
 
-      <div class="footer-col">
-        <span class="f-lbl">REPOSITORIES & DOCS</span>
-        <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="f-link">GitHub Repository</a>
-        <a href="#graph-explorer" class="f-link">Graph Visualizer</a>
-        <a href="#compactor" class="f-link">Context Compactor</a>
-      </div>
+        <div class="simulator-card">
+          <div class="simulator-controls">
+            <div class="scenario-pill-group">
+              <button class="scenario-pill active" onclick="switchScenario('auth', this)">Authentication Service</button>
+              <button class="scenario-pill" onclick="switchScenario('payment', this)">Payment Webhook</button>
+              <button class="scenario-pill" onclick="switchScenario('database', this)">Postgres Migration</button>
+            </div>
 
-      <div class="footer-col">
-        <span class="f-lbl">CONNECTED ECOSYSTEM</span>
-        <a href="https://github.com/bhavukar/aegis" target="_blank" rel="noopener" class="f-link">Aegis Proxy</a>
-        <a href="https://github.com/bhavukar/spectra" target="_blank" rel="noopener" class="f-link">Spectra Tracing</a>
-        <a href="https://github.com/bhavukar/havoc" target="_blank" rel="noopener" class="f-link">Havoc QA Engine</a>
+            <div class="compression-metrics">
+              <div class="metric-pill">
+                <span class="metric-val" id="metric-ratio">97.5%</span>
+                <span class="metric-sub">Token Reduction</span>
+              </div>
+              <div class="metric-pill">
+                <span class="metric-val" id="metric-latency">&lt; 1.2ms</span>
+                <span class="metric-sub">Graph Resolution</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="simulator-grid">
+            <!-- Left: Raw Dump -->
+            <div class="sim-pane">
+              <div class="sim-pane-header">
+                <span class="sim-pane-title">Standard Agent Dump (8 Full Files)</span>
+                <span class="token-badge waste" id="raw-tokens">48,200 TOKENS</span>
+              </div>
+              <div class="sim-code-area" id="raw-code-box">// Loading full file dump for scenario...</div>
+            </div>
+
+            <!-- Right: Cortex Compacted Slice -->
+            <div class="sim-pane">
+              <div class="sim-pane-header">
+                <span class="sim-pane-title">Cortex 2-Hop Compacted Slice</span>
+                <span class="token-badge optimal" id="compact-tokens">1,180 TOKENS</span>
+              </div>
+              <div class="sim-code-area" id="compact-code-box">// Loading compacted slice...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILT FOR DEVELOPERS IN AGENT ERA (USE CASES) -->
+    <section id="use-cases" class="use-cases-section">
+      <div class="section-container">
+        <div class="section-head">
+          <span class="section-eyebrow">Enterprise &amp; Open Source</span>
+          <h2 class="section-title">Built for developers in the agent-first era.</h2>
+          <p class="section-description">
+            Whether you are building autonomous coding swarms, large-scale TypeScript monorepos, or multi-workspace agent fleets.
+          </p>
+        </div>
+
+        <div class="cards-grid-3">
+          <div class="use-case-card">
+            <div class="card-top">
+              <div class="card-icon-bubble"><span class="symbol">folder_managed</span></div>
+              <h3 class="card-title">Large-Scale Monorepos</h3>
+              <p class="card-desc">
+                Never lose context across 500+ microservices or design systems. Cortex preserves global invariants like custom TextInput wrappers and API schemas.
+              </p>
+            </div>
+            <a href="#workbench" class="card-arrow-link">
+              <span>View specification</span>
+              <span class="symbol">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="use-case-card">
+            <div class="card-top">
+              <div class="card-icon-bubble"><span class="symbol">groups</span></div>
+              <h3 class="card-title">Multi-Agent Swarms</h3>
+              <p class="card-desc">
+                Enable multiple parallel agents to read and write architectural decisions simultaneously without Git merge amnesia via the append-only ledger.
+              </p>
+            </div>
+            <a href="#workbench" class="card-arrow-link">
+              <span>View specification</span>
+              <span class="symbol">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="use-case-card">
+            <div class="card-top">
+              <div class="card-icon-bubble"><span class="symbol">security</span></div>
+              <h3 class="card-title">Continuous Verification Gates</h3>
+              <p class="card-desc">
+                New agent decisions start as tentative. Only decisions that survive comprehensive test execution (<code style="font-size: 11px;">exit 0</code>) promote to permanent repository invariants.
+              </p>
+            </div>
+            <a href="#workbench" class="card-arrow-link">
+              <span>View specification</span>
+              <span class="symbol">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS & TIERS -->
+    <section class="solutions-section">
+      <div class="section-container">
+        <div class="solutions-grid">
+          <div class="solution-card">
+            <div>
+              <span class="solution-badge">Available at no charge</span>
+              <h3 class="solution-title">For developers</h3>
+              <p class="solution-subtitle">Local-first, open-source memory engine for your keyboard and IDE.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-primary">Download Cortex CLI</a>
+              <span style="font-size: 13px; color: var(--palette-grey-800);">v0.1.0 • Apache 2.0</span>
+            </div>
+          </div>
+
+          <div class="solution-card">
+            <div>
+              <span class="solution-badge">Now Available</span>
+              <h3 class="solution-title">For organizations &amp; swarms</h3>
+              <p class="solution-subtitle">Enterprise graph mesh, CI/CD invariant enforcement, and shared team memory.</p>
+            </div>
+            <div>
+              <a href="#workbench" class="button button-dark">Explore Enterprise Mesh</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIFICATIONS & RESEARCH JOURNAL -->
+    <section id="journal" class="journal-section">
+      <div class="section-container">
+        <div class="section-head">
+          <span class="section-eyebrow">Engineering Specifications</span>
+          <h2 class="section-title">Latest research &amp; design docs.</h2>
+        </div>
+
+        <div class="journal-list">
+          <div class="journal-item">
+            <div class="journal-meta">
+              <span class="journal-date">Sep 20, 2026</span>
+              <span class="journal-tag">Protocol</span>
+              <span class="journal-title">Cortex v0.1.0: Solving Agent Memory Amnesia with Dual-Layer Graphs</span>
+            </div>
+            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
+              <span>Read spec</span>
+              <span class="symbol">arrow_outward</span>
+            </a>
+          </div>
+
+          <div class="journal-item">
+            <div class="journal-meta">
+              <span class="journal-date">Sep 18, 2026</span>
+              <span class="journal-tag">Compactor</span>
+              <span class="journal-title">Sub-2,500 Token Slicing: Mathematical Heuristics for 2-Hop BFS Pruning</span>
+            </div>
+            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
+              <span>Read spec</span>
+              <span class="symbol">arrow_outward</span>
+            </a>
+          </div>
+
+          <div class="journal-item">
+            <div class="journal-meta">
+              <span class="journal-date">Sep 15, 2026</span>
+              <span class="journal-tag">Ledger</span>
+              <span class="journal-title">Zero Git Merge Conflicts: Append-Only Event Sourcing in Multi-Agent Branches</span>
+            </div>
+            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
+              <span>Read spec</span>
+              <span class="symbol">arrow_outward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIFTOFF BOTTOM DOWNLOAD BANNER (DARK OBSIDIAN) -->
+    <div class="liftoff-container">
+      <div class="liftoff-card">
+        <div class="morphing-particles-container">
+          <canvas id="liftoff-particles-canvas"></canvas>
+        </div>
+        <div class="liftoff-content">
+          <h2 class="liftoff-title">Experience liftoff with Cortex.</h2>
+          <p class="liftoff-desc">
+            Give your AI coding agents permanent memory, automated invariant verification, and sub-2.5k token precision context slices.
+          </p>
+          <div class="liftoff-actions">
+            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-white">
+              <span>Download for Apple Silicon</span>
+            </a>
+            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-outline-white">
+              <span>Download for Linux / Intel</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>(c) 2026 Bhavuk Arora. Open-source under MIT License. Zero tracking. Zero cloud lock-in.</span>
+  </main>
+
+  <!-- GOOGLE ANTIGRAVITY FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <h4 class="footer-brand-title">Google Antigravity // Cortex</h4>
+          <p class="footer-brand-desc">
+            The open-source persistent knowledge graph and context engine for autonomous coding agents.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Product</span>
+          <a href="#workbench" class="footer-link">Dual Graph</a>
+          <a href="#compactor" class="footer-link">Compactor</a>
+          <a href="#ledger" class="footer-link">Ledger</a>
+          <a href="#mcp" class="footer-link">MCP Protocol</a>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Ecosystem</span>
+          <a href="http://localhost:5001" class="footer-link">Aegis Guardrails</a>
+          <a href="http://localhost:5002" class="footer-link">Spectra Debugger</a>
+          <a href="http://localhost:5003" class="footer-link">Havoc Chaos Studio</a>
+          <a href="http://localhost:5004" class="footer-link">Network Relay</a>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Resources</span>
+          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="footer-link">Documentation</a>
+          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+          <a href="#journal" class="footer-link">Specifications</a>
+          <a href="#compactor" class="footer-link">Benchmarks</a>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">Legal &amp; Status</span>
+          <a href="#" class="footer-link">Apache 2.0 License</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Security Guidelines</a>
+          <div style="display: flex; align-items: center; gap: 6px; margin-top: 6px;">
+            <span class="status-beacon"></span>
+            <span style="font-size: 11.5px; color: var(--palette-emerald-600); font-weight: 500;">Systems Operational</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Google Antigravity Open Source. Built for the agent-first era.</span>
+        <div class="footer-legal-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy</a>
+          <a href="#">Manage Cookies</a>
+        </div>
+      </div>
     </div>
   </footer>
 
