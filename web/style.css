@@ -1,10 +1,10 @@
 /* ==========================================================================
-   GOOGLE ANTIGRAVITY DESIGN SYSTEM — CORTEX ENGINE
-   Precision token architecture based on https://antigravity.google/
+   CORTEX DESIGN SYSTEM
+   Modern, precision typography, ambient particles, and clean surfaces.
    ========================================================================== */
 
 :root {
-  /* Google Antigravity Palette */
+  /* Color Palette */
   --palette-grey-0: #ffffff;
   --palette-grey-10: #f8f9fc;
   --palette-grey-15: #f0f1f5;
@@ -14,17 +14,19 @@
   --palette-grey-200: #cdd4dc;
   --palette-grey-300: #b2bbc5;
   --palette-grey-400: #b7bfd9;
-  --palette-grey-600: rgba(170, 177, 204, 0.3);
   --palette-grey-800: #45474d;
   --palette-grey-900: #2f3034;
   --palette-grey-1000: #212226;
   --palette-grey-1100: #18191d;
   --palette-grey-1200: #121317;
+  
   --palette-blue-600: #1a73e8;
   --palette-blue-700: #1557b0;
   --palette-blue-50: #e8f0fe;
+  
   --palette-emerald-600: #0d904f;
   --palette-emerald-50: #e6f4ea;
+  
   --palette-amber-600: #ea8600;
   --palette-amber-50: #fef7e0;
 
@@ -55,7 +57,6 @@
   --space-3xl: 64px;
   --space-4xl: 80px;
   --space-5xl: 96px;
-  --space-6xl: 120px;
 
   /* Shape & Radius */
   --shape-corner-xs: 6px;
@@ -66,13 +67,11 @@
   --shape-corner-rounded: 999px;
 
   /* Grid & Page Width */
-  --max-content-width: 1280px;
+  --max-content-width: 1240px;
   --page-margin: 32px;
 }
 
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
+/* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -124,9 +123,7 @@ code, pre {
   vertical-align: middle;
 }
 
-/* ==========================================================================
-   INTERACTIVE MORPHING PARTICLES BACKGROUND
-   ========================================================================== */
+/* Ambient Morphing Particles Background */
 .morphing-particles-container {
   position: absolute;
   top: 0;
@@ -146,16 +143,14 @@ code, pre {
   height: 100%;
 }
 
-/* ==========================================================================
-   GOOGLE ANTIGRAVITY FLOATING HEADER & NAVBAR
-   ========================================================================== */
+/* Floating Frosted Header */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--theme-outline-subtle);
@@ -165,7 +160,7 @@ code, pre {
 .header-inner {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 12px var(--page-margin);
+  padding: 14px var(--page-margin);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -174,7 +169,6 @@ code, pre {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .brand-logo-link {
@@ -183,35 +177,18 @@ code, pre {
   line-height: 0;
 }
 
-.version-chip {
-  font-family: var(--font-family-code);
-  font-size: 11px;
-  font-weight: 500;
-  background: var(--palette-grey-20);
-  color: var(--palette-grey-800);
-  padding: 3px 8px;
-  border-radius: var(--shape-corner-rounded);
-  border: 1px solid var(--theme-outline-variant);
-  letter-spacing: 0.02em;
-}
-
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.nav-item {
-  position: relative;
+  gap: 6px;
 }
 
 .nav-button {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   font-size: 14px;
-  font-weight: 450;
+  font-weight: 500;
   color: var(--palette-grey-800);
   border-radius: var(--shape-corner-rounded);
   transition: all 0.15s ease;
@@ -222,92 +199,13 @@ code, pre {
   background: var(--palette-grey-20);
 }
 
-.nav-button .dropdown-arrow {
-  font-size: 16px;
-  transition: transform 0.2s ease;
-}
-
-.nav-item:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-/* Dropdown Menu Overlay */
-.nav-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  min-width: 260px;
-  background: #ffffff;
-  border: 1px solid var(--theme-outline-variant);
-  border-radius: var(--shape-corner-md);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  padding: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  z-index: 100;
-}
-
-.nav-item:hover .nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.dropdown-link {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: var(--shape-corner-sm);
-  transition: background 0.15s ease;
-}
-
-.dropdown-link:hover {
-  background: var(--palette-grey-10);
-}
-
-.dropdown-icon-box {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--palette-blue-50);
-  color: var(--palette-blue-600);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.dropdown-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-title {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--palette-grey-1200);
-}
-
-.dropdown-desc {
-  font-size: 11.5px;
-  color: var(--palette-grey-800);
-  line-height: 1.35;
-}
-
 .header-actions {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* ==========================================================================
-   BUTTONS (GOOGLE ANTIGRAVITY SPEC)
-   ========================================================================== */
+/* Buttons */
 .button {
   font-family: var(--font-family-sans);
   font-size: 14px;
@@ -351,25 +249,12 @@ code, pre {
   border-color: var(--palette-grey-300);
 }
 
-.button-dark {
-  background: var(--palette-grey-1200);
-  color: #ffffff;
-  border: 1px solid var(--palette-grey-1200);
-}
-
-.button-dark:hover {
-  background: var(--palette-grey-1000);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
-}
-
 .button-compact {
   padding: 7px 16px;
   font-size: 13px;
 }
 
-/* ==========================================================================
-   HERO SECTION (WELCOME WRAPPER)
-   ========================================================================== */
+/* Hero Welcome Section */
 .welcome-section {
   position: relative;
   padding-top: 150px;
@@ -379,48 +264,26 @@ code, pre {
 }
 
 .welcome-container {
-  max-width: 960px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 var(--page-margin);
   position: relative;
   z-index: 2;
 }
 
-.welcome-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--palette-grey-10);
-  border: 1px solid var(--theme-outline-variant);
-  border-radius: var(--shape-corner-rounded);
-  padding: 6px 16px;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--palette-grey-800);
-  margin-bottom: 24px;
-}
-
-.welcome-badge-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--palette-blue-600);
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
-}
-
 .landing-main-header {
-  font-size: clamp(38px, 6vw, 76px);
+  font-size: clamp(38px, 6vw, 68px);
   font-weight: 450;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--palette-grey-1200);
   margin-bottom: 22px;
 }
 
 .landing-main-subhead {
-  font-size: clamp(16px, 2.1vw, 20px);
+  font-size: clamp(16px, 2vw, 19px);
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--palette-grey-800);
   max-width: 720px;
@@ -472,9 +335,7 @@ code, pre {
   color: var(--palette-grey-800);
 }
 
-/* ==========================================================================
-   HERO WORKBENCH / INTERACTIVE STAGE
-   ========================================================================== */
+/* Interactive Workbench Stage */
 .stage-section {
   position: relative;
   max-width: var(--max-content-width);
@@ -692,78 +553,7 @@ code, pre {
   color: var(--palette-blue-600);
 }
 
-/* ==========================================================================
-   AGENT-FIRST FLOATING ICON BOUNCER RIBBON (GOOGLE ANTIGRAVITY SPEC)
-   ========================================================================== */
-.agent-first-section {
-  padding: var(--space-4xl) 0 var(--space-4xl);
-  position: relative;
-  overflow-x: clip;
-}
-
-.icon-list-wrapper {
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  padding: 0 var(--page-margin);
-}
-
-.icon-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-}
-
-.bouncer {
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  border: 1px solid var(--theme-outline-variant);
-  background: var(--palette-grey-10);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.25s ease;
-  animation: floatOrb 5s ease-in-out infinite;
-}
-
-.bouncer:nth-child(even) {
-  animation-delay: -2.5s;
-}
-
-.bouncer:hover {
-  transform: translateY(-6px) scale(1.06);
-  border-color: var(--palette-blue-600);
-  background: #ffffff;
-  box-shadow: 0 10px 24px rgba(26, 115, 232, 0.12);
-}
-
-.bouncer-symbol {
-  font-family: var(--font-family-symbols);
-  font-size: 26px;
-  color: var(--palette-grey-1200);
-}
-
-.bouncer-caption {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--palette-grey-800);
-  letter-spacing: -0.01em;
-}
-
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-/* ==========================================================================
-   FEATURE EXPLORER (PRODUCT PILLARS)
-   ========================================================================== */
+/* Feature Explorer */
 .feature-explorer-section {
   padding: var(--space-5xl) 0;
   position: relative;
@@ -790,18 +580,18 @@ code, pre {
 }
 
 .section-title {
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(30px, 4vw, 44px);
   font-weight: 450;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.025em;
   color: var(--palette-grey-1200);
   margin-bottom: 16px;
 }
 
 .section-description {
-  font-size: 17px;
+  font-size: 16.5px;
   color: var(--palette-grey-800);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .feature-list {
@@ -831,18 +621,10 @@ code, pre {
   gap: 16px;
 }
 
-.feature-tag {
-  font-family: var(--font-family-code);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--palette-blue-600);
-  letter-spacing: 0.02em;
-}
-
 .feature-heading {
-  font-size: clamp(24px, 2.6vw, 34px);
+  font-size: clamp(22px, 2.4vw, 32px);
   font-weight: 450;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--palette-grey-1200);
 }
@@ -858,11 +640,10 @@ code, pre {
   border: 1px solid var(--theme-outline-variant);
   border-radius: var(--shape-corner-xl);
   overflow: hidden;
-  padding: 28px;
+  padding: 24px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03);
 }
 
-/* Card Mockups */
 .code-preview-box {
   background: #ffffff;
   border: 1px solid var(--theme-outline-variant);
@@ -872,6 +653,7 @@ code, pre {
   font-size: 12.5px;
   line-height: 1.65;
   color: var(--palette-grey-1200);
+  overflow-x: auto;
 }
 
 .code-preview-box .tok-kw { color: #d73a49; font-weight: 600; }
@@ -879,9 +661,7 @@ code, pre {
 .code-preview-box .tok-str { color: #032f62; }
 .code-preview-box .tok-com { color: #6a737d; font-style: italic; }
 
-/* ==========================================================================
-   LIVE CONTEXT COMPACTOR SIMULATOR
-   ========================================================================== */
+/* Compactor Simulator */
 .compactor-section {
   padding: var(--space-5xl) 0;
   background: var(--palette-grey-10);
@@ -903,7 +683,7 @@ code, pre {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--theme-outline-variant);
 }
@@ -1017,13 +797,7 @@ code, pre {
   color: var(--palette-grey-800);
 }
 
-/* ==========================================================================
-   BUILT FOR DEVELOPERS IN AGENT ERA (USE CASE 3-CARD GRID)
-   ========================================================================== */
-.use-cases-section {
-  padding: var(--space-5xl) 0;
-}
-
+/* Cards Grid */
 .cards-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1034,179 +808,36 @@ code, pre {
   background: #ffffff;
   border: 1px solid var(--theme-outline-variant);
   border-radius: var(--shape-corner-xl);
-  padding: 32px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.use-case-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--palette-blue-600);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
 }
 
 .card-top {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.card-icon-bubble {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--palette-blue-50);
-  color: var(--palette-blue-600);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 12px;
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--palette-grey-1200);
-  line-height: 1.25;
+  line-height: 1.3;
+}
+
+.card-title code {
+  color: var(--palette-blue-600);
 }
 
 .card-desc {
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--palette-grey-800);
   line-height: 1.55;
 }
 
-.card-arrow-link {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--palette-blue-600);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: gap 0.15s ease;
-}
-
-.card-arrow-link:hover {
-  gap: 10px;
-}
-
-/* ==========================================================================
-   TRY SOLUTIONS / DUAL PERSONA CARDS
-   ========================================================================== */
-.solutions-section {
-  padding: var(--space-5xl) 0;
-  background: var(--palette-grey-10);
-  border-top: 1px solid var(--theme-outline-variant);
-}
-
-.solutions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-}
-
-.solution-card {
-  background: #ffffff;
-  border: 1px solid var(--theme-outline-variant);
-  border-radius: var(--shape-corner-xl);
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 280px;
-}
-
-.solution-badge {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--palette-blue-600);
-  margin-bottom: 8px;
-}
-
-.solution-title {
-  font-size: 28px;
-  font-weight: 450;
-  color: var(--palette-grey-1200);
-  margin-bottom: 6px;
-}
-
-.solution-subtitle {
-  font-size: 16px;
-  color: var(--palette-grey-800);
-  margin-bottom: 32px;
-}
-
-/* ==========================================================================
-   ENGINEERING JOURNAL & SPECIFICATIONS LIST
-   ========================================================================== */
-.journal-section {
-  padding: var(--space-5xl) 0;
-}
-
-.journal-list {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--theme-outline-variant);
-}
-
-.journal-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--theme-outline-variant);
-  transition: background 0.15s ease, padding 0.15s ease;
-}
-
-.journal-item:hover {
-  padding-left: 12px;
-  padding-right: 12px;
-  background: var(--palette-grey-10);
-}
-
-.journal-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.journal-title {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--palette-grey-1200);
-}
-
-.journal-date {
-  font-size: 13px;
-  color: var(--palette-grey-800);
-}
-
-.journal-tag {
-  font-family: var(--font-family-code);
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 8px;
-  background: var(--palette-grey-20);
-  border-radius: var(--shape-corner-rounded);
-  color: var(--palette-grey-800);
-}
-
-.journal-link {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--palette-blue-600);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* ==========================================================================
-   LIFTOFF BOTTOM DOWNLOAD BANNER (DARK OBSIDIAN CONTAINER)
-   ========================================================================== */
+/* Bottom Installation Banner */
 .liftoff-container {
   padding: 0 var(--page-margin) var(--space-5xl);
   max-width: var(--max-content-width);
@@ -1217,7 +848,7 @@ code, pre {
   position: relative;
   background: var(--palette-grey-1200);
   border-radius: var(--shape-corner-xl);
-  padding: 90px 48px;
+  padding: 80px 48px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1227,26 +858,26 @@ code, pre {
 }
 
 .liftoff-card .morphing-particles-container {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .liftoff-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  max-width: 620px;
 }
 
 .liftoff-title {
-  font-size: clamp(34px, 5vw, 56px);
+  font-size: clamp(32px, 4.5vw, 50px);
   font-weight: 450;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
 }
 
 .liftoff-desc {
-  font-size: 16.5px;
+  font-size: 16px;
   color: var(--palette-grey-300);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   line-height: 1.55;
 }
 
@@ -1268,24 +899,11 @@ code, pre {
   background: var(--palette-grey-50);
 }
 
-.button-outline-white {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-}
-
-.button-outline-white:hover {
-  background: rgba(255, 255, 255, 0.16);
-}
-
-/* ==========================================================================
-   FOOTER (GOOGLE ANTIGRAVITY SPEC)
-   ========================================================================== */
+/* Minimalist Footer */
 .footer {
   background: var(--palette-grey-10);
   border-top: 1px solid var(--theme-outline-variant);
-  padding: 80px 0 40px;
+  padding: 36px 0;
 }
 
 .footer-inner {
@@ -1294,64 +912,11 @@ code, pre {
   padding: 0 var(--page-margin);
 }
 
-.footer-top-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.footer-brand-title {
-  font-size: 22px;
-  font-weight: 450;
-  color: var(--palette-grey-1200);
-}
-
-.footer-brand-desc {
-  font-size: 14px;
-  color: var(--palette-grey-800);
-  max-width: 320px;
-  line-height: 1.5;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-col-title {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--palette-grey-800);
-  margin-bottom: 4px;
-}
-
-.footer-link {
-  font-size: 13.5px;
-  color: var(--palette-grey-800);
-  transition: color 0.15s ease;
-}
-
-.footer-link:hover {
-  color: var(--palette-grey-1200);
-}
-
 .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 32px;
-  border-top: 1px solid var(--theme-outline-variant);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--palette-grey-800);
   flex-wrap: wrap;
   gap: 16px;
@@ -1363,9 +928,11 @@ code, pre {
   gap: 20px;
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (MOBILE & TABLET)
-   ========================================================================== */
+.footer-legal-links a:hover {
+  color: var(--palette-grey-1200);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .nav-menu {
     display: none;
@@ -1379,7 +946,7 @@ code, pre {
   }
   .feature-item {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
   }
   .feature-item.reverse {
     direction: ltr;
@@ -1387,14 +954,8 @@ code, pre {
   .cards-grid-3 {
     grid-template-columns: 1fr;
   }
-  .solutions-grid {
-    grid-template-columns: 1fr;
-  }
   .simulator-grid {
     grid-template-columns: 1fr;
-  }
-  .footer-top-grid {
-    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -1406,10 +967,7 @@ code, pre {
     padding-top: 120px;
   }
   .landing-main-header {
-    font-size: 36px;
-  }
-  .footer-top-grid {
-    grid-template-columns: 1fr;
+    font-size: 34px;
   }
   .footer-bottom {
     flex-direction: column;

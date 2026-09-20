@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Google Antigravity — Cortex Knowledge Graph & Agent Memory</title>
-  <meta name="description" content="A self-evolving codebase knowledge graph and episodic memory engine for AI coding agents. Sub-2,500 token context compaction with zero Git amnesia." />
+  <title>Cortex — Codebase Knowledge Graph &amp; Context Compactor</title>
+  <meta name="description" content="Persistent codebase knowledge graph and context engine for AI coding agents. Sub-2,500 token context compaction with zero Git amnesia." />
   
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,120 +14,50 @@
 </head>
 <body>
 
-  <!-- Background Morphing Particles Canvas -->
+  <!-- Ambient Morphing Particles Background -->
   <div class="morphing-particles-container">
     <canvas id="morphing-particles-canvas"></canvas>
   </div>
 
-  <!-- Google Antigravity Floating Header -->
+  <!-- Floating Header Navigation -->
   <header class="header">
     <div class="header-inner">
       <div class="logo-container">
-        <a href="#" class="brand-logo-link" aria-label="Cortex">
-          <img src="assets/logo.svg" alt="Cortex Logo" height="28" />
+        <a href="#" class="brand-logo-link" aria-label="Cortex Home">
+          <img src="assets/logo.svg" alt="Cortex" height="26" />
         </a>
-        <span class="version-chip">v0.1.0</span>
       </div>
 
       <nav class="nav-menu">
-        <div class="nav-item">
-          <button class="nav-button">
-            <span>Products</span>
-            <span class="symbol dropdown-arrow">keyboard_arrow_down</span>
-          </button>
-          <div class="nav-dropdown">
-            <a href="#workbench" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">account_tree</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">Cortex Dual Graph</span>
-                <span class="dropdown-desc">AST code topology + episodic memory</span>
-              </div>
-            </a>
-            <a href="#compactor" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">compress</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">Context Compactor</span>
-                <span class="dropdown-desc">Sub-2.5k token precision slices</span>
-              </div>
-            </a>
-            <a href="#ledger" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">history_edu</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">Epistemic Ledger</span>
-                <span class="dropdown-desc">Append-only event sourcing</span>
-              </div>
-            </a>
-            <a href="#mcp" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">sync_alt</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">Native MCP Server</span>
-                <span class="dropdown-desc">Claude Desktop, Cursor &amp; Cline bridge</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <button class="nav-button">
-            <span>Architecture</span>
-            <span class="symbol dropdown-arrow">keyboard_arrow_down</span>
-          </button>
-          <div class="nav-dropdown">
-            <a href="#features" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">hub</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">2-Hop BFS Traversal</span>
-                <span class="dropdown-desc">Causal blast-radius isolation</span>
-              </div>
-            </a>
-            <a href="#features" class="dropdown-link">
-              <div class="dropdown-icon-box"><span class="symbol">verified</span></div>
-              <div class="dropdown-text">
-                <span class="dropdown-title">Verification Gates</span>
-                <span class="dropdown-desc">Automated invariant enforcement</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <a href="#compactor" class="nav-button">Compactor</a>
-        </div>
-        <div class="nav-item">
-          <a href="#use-cases" class="nav-button">Use Cases</a>
-        </div>
-        <div class="nav-item">
-          <a href="#journal" class="nav-button">Specifications</a>
-        </div>
+        <a href="#workbench" class="nav-button">Graph Explorer</a>
+        <a href="#compactor" class="nav-button">Compactor</a>
+        <a href="#features" class="nav-button">Architecture</a>
+        <a href="#mcp-setup" class="nav-button">MCP Server</a>
+        <a href="#cli-ref" class="nav-button">CLI</a>
       </nav>
 
       <div class="header-actions">
         <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-secondary button-compact">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 2px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <span>GitHub</span>
         </a>
         <a href="#workbench" class="button button-primary button-compact">
-          <span>Explore Studio</span>
+          <span>Live Studio</span>
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION (GOOGLE ANTIGRAVITY SPEC) -->
+    <!-- HERO SECTION -->
     <section class="welcome-section">
       <div class="welcome-container">
-        <div class="welcome-badge">
-          <span class="welcome-badge-dot"></span>
-          <span>Google Antigravity // Agent Memory Protocol</span>
-        </div>
-
         <h1 class="landing-main-header">
-          Experience liftoff with the next-gen agent memory.
+          Permanent memory for AI coding agents.
         </h1>
 
         <p class="landing-main-subhead">
-          Cortex builds a self-evolving knowledge graph of your repository's AST structure and conversational decisions. Compressing 50,000-token dumps into laser-focused sub-2.5k token slices.
+          Cortex builds a dual-layer knowledge graph of your repository's AST structure and past conversational decisions. It replaces 50,000-token codebase dumps with laser-focused sub-2.5k token slices.
         </p>
 
         <div class="welcome-cta-group">
@@ -136,7 +66,7 @@
             <span class="symbol">arrow_forward</span>
           </a>
           <a href="#compactor" class="button button-secondary">
-            <span>Compactor Benchmarks</span>
+            <span>Context Compactor</span>
           </a>
         </div>
 
@@ -148,7 +78,7 @@
       </div>
     </section>
 
-    <!-- HERO WORKBENCH / LIVE KNOWLEDGE GRAPH STAGE -->
+    <!-- INTERACTIVE WORKBENCH STAGE -->
     <section id="workbench" class="stage-section">
       <div class="workbench-card">
         <!-- Top Window Header -->
@@ -190,7 +120,7 @@
             <div class="inspector-section">
               <span class="inspector-label">Verification Status</span>
               <div class="inspector-box" id="insp-status-box" style="border-left: 3px solid var(--palette-emerald-600);">
-                <strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed test suite <code id="insp-test">auth.test.ts</code> (exit 0).
+                <strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed verification test <code>auth.test.ts</code> (exit 0).
               </div>
             </div>
 
@@ -202,7 +132,7 @@
             </div>
 
             <div class="inspector-section">
-              <span class="inspector-label">Epistemic Rationale &amp; Gotchas</span>
+              <span class="inspector-label">Rationale &amp; Invariants</span>
               <div class="inspector-box" id="insp-notes">
                 JWT blacklisting moved to distributed Redis cache with 15-minute sliding TTL. Prevents database bottlenecks during token rotation spikes.
               </div>
@@ -219,56 +149,12 @@
       </div>
     </section>
 
-    <!-- AGENT-FIRST FLOATING ICON BOUNCER RIBBON (GOOGLE ANTIGRAVITY SPEC) -->
-    <section class="agent-first-section">
-      <div class="icon-list-wrapper">
-        <ul class="icon-list">
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">terminal</span>
-            <span class="bouncer-caption">CLI Engine</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">device_hub</span>
-            <span class="bouncer-caption">AST Graph</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">merge</span>
-            <span class="bouncer-caption">Git Ledger</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">folder</span>
-            <span class="bouncer-caption">AST Scanner</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">check_circle</span>
-            <span class="bouncer-caption">Gate Tests</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">database</span>
-            <span class="bouncer-caption">Memory Store</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">code_blocks</span>
-            <span class="bouncer-caption">Compactor</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">deployed_code</span>
-            <span class="bouncer-caption">MCP Server</span>
-          </li>
-          <li class="bouncer">
-            <span class="symbol bouncer-symbol">memory</span>
-            <span class="bouncer-caption">Hebbian DAG</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- FEATURE EXPLORER SECTION (PRODUCT PILLARS) -->
+    <!-- ARCHITECTURE FEATURES SECTION -->
     <section id="features" class="feature-explorer-section">
       <div class="section-container">
         <div class="section-head">
-          <span class="section-eyebrow">Pillars of the Cortex Engine</span>
-          <h2 class="section-title">Built for developers in the agent-first era.</h2>
+          <span class="section-eyebrow">Core Engine</span>
+          <h2 class="section-title">How Cortex solves agent amnesia.</h2>
           <p class="section-description">
             Conventional agent tools dump dozens of complete files into the prompt, overflowing the context window and diluting attention. Cortex extracts minimal 2-hop graph slices.
           </p>
@@ -278,16 +164,10 @@
           <!-- Feature 1: Dual-Layer Graph -->
           <div class="feature-item">
             <div class="feature-copy">
-              <span class="feature-tag">LAYER 1 + LAYER 2 DUAL TOPOLOGY</span>
-              <h3 class="feature-heading">Structural Code AST + Epistemic Memory</h3>
+              <h3 class="feature-heading">Structural AST + Epistemic Memory</h3>
               <p class="feature-text">
-                Cortex builds a synchronized two-layer model. Layer 1 maps symbols, imports, exports, and design systems using AST parsing. Layer 2 maps conversational decisions, invariants, and discovered gotchas.
+                Cortex synchronizes two layers. Layer 1 maps code symbols, imports, exports, and design system contracts using AST parsing. Layer 2 captures conversational decisions, invariants, and discovered gotchas.
               </p>
-              <div style="display: flex; gap: 12px; margin-top: 8px;">
-                <span class="version-chip" style="color: var(--palette-blue-600); border-color: var(--palette-blue-600);">2-Hop BFS</span>
-                <span class="version-chip">Causal Weighting</span>
-                <span class="version-chip">Zero Docker/JVM</span>
-              </div>
             </div>
             <div class="feature-media">
               <div class="code-preview-box">
@@ -307,15 +187,10 @@
           <!-- Feature 2: Context Compactor -->
           <div class="feature-item reverse">
             <div class="feature-copy">
-              <span class="feature-tag">SUB-2,500 TOKEN SLICING</span>
-              <h3 class="feature-heading">Compacts 48k tokens to 1.2k precision slices.</h3>
+              <h3 class="feature-heading">Sub-2,500 Token Context Slicing</h3>
               <p class="feature-text">
                 When an agent works on a function, it doesn't need 10 full files. It only needs the target symbol's signatures, active invariants, and known gotchas within its exact 2-hop blast radius.
               </p>
-              <div style="display: flex; gap: 12px; margin-top: 8px;">
-                <span class="version-chip" style="color: var(--palette-emerald-600); border-color: var(--palette-emerald-600);">97.5% Compression</span>
-                <span class="version-chip">0% Hallucination</span>
-              </div>
             </div>
             <div class="feature-media">
               <div class="code-preview-box">
@@ -335,16 +210,10 @@
           <!-- Feature 3: Event-Sourced Ledger -->
           <div class="feature-item">
             <div class="feature-copy">
-              <span class="feature-tag">APPEND-ONLY EVENT SOURCING</span>
-              <h3 class="feature-heading">Zero Git merge conflicts across agent swarms.</h3>
+              <h3 class="feature-heading">Append-Only Event Sourcing</h3>
               <p class="feature-text">
                 Monolithic memory files cause merge conflicts when multiple developers or agent swarms work in parallel branches. Cortex records atomic events to <code style="color: var(--palette-blue-600);">.cortex/ledger/*.jsonl</code> that merge cleanly in Git without conflict.
               </p>
-              <div style="display: flex; gap: 12px; margin-top: 8px;">
-                <span class="version-chip">Git Native</span>
-                <span class="version-chip">Distributed Merge</span>
-                <span class="version-chip">Hebbian Decay</span>
-              </div>
             </div>
             <div class="feature-media">
               <div class="code-preview-box">
@@ -413,218 +282,110 @@
       </div>
     </section>
 
-    <!-- BUILT FOR DEVELOPERS IN AGENT ERA (USE CASES) -->
-    <section id="use-cases" class="use-cases-section">
+    <!-- MCP SERVER INTEGRATION -->
+    <section id="mcp-setup" class="feature-explorer-section">
       <div class="section-container">
         <div class="section-head">
-          <span class="section-eyebrow">Enterprise &amp; Open Source</span>
-          <h2 class="section-title">Built for developers in the agent-first era.</h2>
+          <span class="section-eyebrow">Universal Protocol</span>
+          <h2 class="section-title">Model Context Protocol (MCP) Integration</h2>
           <p class="section-description">
-            Whether you are building autonomous coding swarms, large-scale TypeScript monorepos, or multi-workspace agent fleets.
+            Cortex runs as a standard stdio MCP server. Connect Claude Desktop, Cursor, Cline, or custom agents with one config block.
           </p>
+        </div>
+
+        <div class="simulator-card">
+          <div class="code-preview-box">
+            <span class="tok-com">// Claude Desktop config / cursor-settings.json</span><br/>
+            {<br/>
+            &nbsp;&nbsp;<span class="tok-kw">"mcpServers"</span>: {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"cortex"</span>: {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"command"</span>: <span class="tok-str">"npx"</span>,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-kw">"args"</span>: [<span class="tok-str">"-y"</span>, <span class="tok-str">"cortex-graph"</span>, <span class="tok-str">"mcp"</span>]<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+            &nbsp;&nbsp;}<br/>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI REFERENCE SECTION -->
+    <section id="cli-ref" class="feature-explorer-section" style="padding-top: 0;">
+      <div class="section-container">
+        <div class="section-head">
+          <span class="section-eyebrow">Terminal First</span>
+          <h2 class="section-title">CLI Commands Quick Reference</h2>
         </div>
 
         <div class="cards-grid-3">
           <div class="use-case-card">
             <div class="card-top">
-              <div class="card-icon-bubble"><span class="symbol">folder_managed</span></div>
-              <h3 class="card-title">Large-Scale Monorepos</h3>
+              <h3 class="card-title"><code>cortex init</code></h3>
               <p class="card-desc">
-                Never lose context across 500+ microservices or design systems. Cortex preserves global invariants like custom TextInput wrappers and API schemas.
+                Scans your repository, parses the AST across all source files, and initializes the local graph and ledger.
               </p>
             </div>
-            <a href="#workbench" class="card-arrow-link">
-              <span>View specification</span>
-              <span class="symbol">arrow_forward</span>
-            </a>
           </div>
 
           <div class="use-case-card">
             <div class="card-top">
-              <div class="card-icon-bubble"><span class="symbol">groups</span></div>
-              <h3 class="card-title">Multi-Agent Swarms</h3>
+              <h3 class="card-title"><code>cortex context &lt;target&gt;</code></h3>
               <p class="card-desc">
-                Enable multiple parallel agents to read and write architectural decisions simultaneously without Git merge amnesia via the append-only ledger.
+                Extracts a sub-2,500 token compacted context slice containing 2-hop interfaces, invariants, and gotchas.
               </p>
             </div>
-            <a href="#workbench" class="card-arrow-link">
-              <span>View specification</span>
-              <span class="symbol">arrow_forward</span>
-            </a>
           </div>
 
           <div class="use-case-card">
             <div class="card-top">
-              <div class="card-icon-bubble"><span class="symbol">security</span></div>
-              <h3 class="card-title">Continuous Verification Gates</h3>
+              <h3 class="card-title"><code>cortex decision &lt;title&gt;</code></h3>
               <p class="card-desc">
-                New agent decisions start as tentative. Only decisions that survive comprehensive test execution (<code style="font-size: 11px;">exit 0</code>) promote to permanent repository invariants.
+                Records an architectural decision with optional verification gates into the append-only event ledger.
               </p>
             </div>
-            <a href="#workbench" class="card-arrow-link">
-              <span>View specification</span>
-              <span class="symbol">arrow_forward</span>
-            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SOLUTIONS & TIERS -->
-    <section class="solutions-section">
-      <div class="section-container">
-        <div class="solutions-grid">
-          <div class="solution-card">
-            <div>
-              <span class="solution-badge">Available at no charge</span>
-              <h3 class="solution-title">For developers</h3>
-              <p class="solution-subtitle">Local-first, open-source memory engine for your keyboard and IDE.</p>
-            </div>
-            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-              <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-primary">Download Cortex CLI</a>
-              <span style="font-size: 13px; color: var(--palette-grey-800);">v0.1.0 • Apache 2.0</span>
-            </div>
-          </div>
-
-          <div class="solution-card">
-            <div>
-              <span class="solution-badge">Now Available</span>
-              <h3 class="solution-title">For organizations &amp; swarms</h3>
-              <p class="solution-subtitle">Enterprise graph mesh, CI/CD invariant enforcement, and shared team memory.</p>
-            </div>
-            <div>
-              <a href="#workbench" class="button button-dark">Explore Enterprise Mesh</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SPECIFICATIONS & RESEARCH JOURNAL -->
-    <section id="journal" class="journal-section">
-      <div class="section-container">
-        <div class="section-head">
-          <span class="section-eyebrow">Engineering Specifications</span>
-          <h2 class="section-title">Latest research &amp; design docs.</h2>
-        </div>
-
-        <div class="journal-list">
-          <div class="journal-item">
-            <div class="journal-meta">
-              <span class="journal-date">Sep 20, 2026</span>
-              <span class="journal-tag">Protocol</span>
-              <span class="journal-title">Cortex v0.1.0: Solving Agent Memory Amnesia with Dual-Layer Graphs</span>
-            </div>
-            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
-              <span>Read spec</span>
-              <span class="symbol">arrow_outward</span>
-            </a>
-          </div>
-
-          <div class="journal-item">
-            <div class="journal-meta">
-              <span class="journal-date">Sep 18, 2026</span>
-              <span class="journal-tag">Compactor</span>
-              <span class="journal-title">Sub-2,500 Token Slicing: Mathematical Heuristics for 2-Hop BFS Pruning</span>
-            </div>
-            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
-              <span>Read spec</span>
-              <span class="symbol">arrow_outward</span>
-            </a>
-          </div>
-
-          <div class="journal-item">
-            <div class="journal-meta">
-              <span class="journal-date">Sep 15, 2026</span>
-              <span class="journal-tag">Ledger</span>
-              <span class="journal-title">Zero Git Merge Conflicts: Append-Only Event Sourcing in Multi-Agent Branches</span>
-            </div>
-            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="journal-link">
-              <span>Read spec</span>
-              <span class="symbol">arrow_outward</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIFTOFF BOTTOM DOWNLOAD BANNER (DARK OBSIDIAN) -->
+    <!-- BOTTOM INSTALLATION BANNER -->
     <div class="liftoff-container">
       <div class="liftoff-card">
         <div class="morphing-particles-container">
           <canvas id="liftoff-particles-canvas"></canvas>
         </div>
         <div class="liftoff-content">
-          <h2 class="liftoff-title">Experience liftoff with Cortex.</h2>
+          <h2 class="liftoff-title">Get started with Cortex.</h2>
           <p class="liftoff-desc">
             Give your AI coding agents permanent memory, automated invariant verification, and sub-2.5k token precision context slices.
           </p>
           <div class="liftoff-actions">
             <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-white">
-              <span>Download for Apple Silicon</span>
+              <span>View on GitHub</span>
             </a>
-            <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="button button-outline-white">
-              <span>Download for Linux / Intel</span>
-            </a>
+            <div class="cli-pill" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;" onclick="copyCliCommand()">
+              <span class="cli-prompt" style="color: #64b5f6;">$</span>
+              <span>npm install -g cortex-graph</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- GOOGLE ANTIGRAVITY FOOTER -->
+  <!-- CLEAN MINIMALIST FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-top-grid">
-        <div class="footer-brand">
-          <h4 class="footer-brand-title">Google Antigravity // Cortex</h4>
-          <p class="footer-brand-desc">
-            The open-source persistent knowledge graph and context engine for autonomous coding agents.
-          </p>
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/logo.svg" alt="Cortex" height="20" />
+          <span>Persistent Codebase Knowledge Graph &amp; Context Engine for AI Agents.</span>
         </div>
-
-        <div class="footer-col">
-          <span class="footer-col-title">Product</span>
-          <a href="#workbench" class="footer-link">Dual Graph</a>
-          <a href="#compactor" class="footer-link">Compactor</a>
-          <a href="#ledger" class="footer-link">Ledger</a>
-          <a href="#mcp" class="footer-link">MCP Protocol</a>
-        </div>
-
-        <div class="footer-col">
-          <span class="footer-col-title">Ecosystem</span>
-          <a href="http://localhost:5001" class="footer-link">Aegis Guardrails</a>
-          <a href="http://localhost:5002" class="footer-link">Spectra Debugger</a>
-          <a href="http://localhost:5003" class="footer-link">Havoc Chaos Studio</a>
-          <a href="http://localhost:5004" class="footer-link">Network Relay</a>
-        </div>
-
-        <div class="footer-col">
-          <span class="footer-col-title">Resources</span>
-          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="footer-link">Documentation</a>
-          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener" class="footer-link">GitHub</a>
-          <a href="#journal" class="footer-link">Specifications</a>
-          <a href="#compactor" class="footer-link">Benchmarks</a>
-        </div>
-
-        <div class="footer-col">
-          <span class="footer-col-title">Legal &amp; Status</span>
-          <a href="#" class="footer-link">Apache 2.0 License</a>
-          <a href="#" class="footer-link">Privacy Policy</a>
-          <a href="#" class="footer-link">Security Guidelines</a>
-          <div style="display: flex; align-items: center; gap: 6px; margin-top: 6px;">
-            <span class="status-beacon"></span>
-            <span style="font-size: 11.5px; color: var(--palette-emerald-600); font-weight: 500;">Systems Operational</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© 2026 Google Antigravity Open Source. Built for the agent-first era.</span>
         <div class="footer-legal-links">
-          <a href="#">Terms of Service</a>
-          <a href="#">Privacy</a>
-          <a href="#">Manage Cookies</a>
+          <a href="https://github.com/bhavukar/cortex" target="_blank" rel="noopener">GitHub</a>
+          <a href="#workbench">Studio</a>
+          <a href="#compactor">Compactor</a>
+          <a href="#mcp-setup">MCP</a>
         </div>
       </div>
     </div>

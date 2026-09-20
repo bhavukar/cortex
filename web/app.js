@@ -1,11 +1,11 @@
 /**
- * GOOGLE ANTIGRAVITY // CORTEX APPLICATION LOGIC
+ * CORTEX APPLICATION LOGIC
  * High-performance particle physics, interactive dual-layer graph DAG,
  * live compactor simulator, and workbench controllers.
  */
 
 // =============================================================================
-// 1. MORPHING PARTICLES SIMULATION (HERO & LIFTOFF BANNER)
+// 1. MORPHING PARTICLES SIMULATION (HERO & BOTTOM BANNER)
 // =============================================================================
 function initParticles(canvasId, isDark = false) {
   const canvas = document.getElementById(canvasId);
@@ -21,15 +21,15 @@ function initParticles(canvasId, isDark = false) {
     height = canvas.height = canvas.parentElement.offsetHeight;
   });
 
-  const count = Math.min(Math.floor((width * height) / 12000), 55);
+  const count = Math.min(Math.floor((width * height) / 12000), 50);
   const particles = [];
 
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
       radius: Math.random() * 2 + 1.2,
       baseAlpha: Math.random() * 0.4 + 0.2
     });
@@ -60,7 +60,7 @@ function initParticles(canvasId, isDark = false) {
       if (p.y < 0) p.y = height;
       if (p.y > height) p.y = 0;
 
-      // Mouse influence
+      // Mouse repulsion
       const dx = mouseX - p.x;
       const dy = mouseY - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -82,7 +82,7 @@ function initParticles(canvasId, isDark = false) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 110) * 0.18})`;
+          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 110) * 0.16})`;
           ctx.lineWidth = 0.75;
           ctx.stroke();
         }
@@ -104,53 +104,45 @@ const GRAPH_NODES = [
     id: 'ast-token-svc',
     label: 'TokenService',
     layer: 'ast',
-    type: 'CLASS_EXPORT',
-    status: 'ACTIVE',
     symbol: 'src/auth/token.service.ts::TokenService',
     test: 'auth.test.ts',
     x: 25,
     y: 30,
     notes: 'Handles JWT lifecycle, token issuance, session refresh, and revocation state in Redis.',
-    tokens: '180 tokens'
+    status: 'ACTIVE'
   },
   {
     id: 'ast-auth-controller',
     label: 'AuthController',
     layer: 'ast',
-    type: 'HTTP_CONTROLLER',
-    status: 'ACTIVE',
     symbol: 'src/auth/auth.controller.ts::AuthController',
     test: 'api.spec.ts',
     x: 65,
     y: 22,
     notes: 'Exposes /api/v1/auth endpoints. Enforces bearer schema and rate limits.',
-    tokens: '140 tokens'
+    status: 'ACTIVE'
   },
   {
     id: 'ast-text-input',
     label: 'TextInput Component',
     layer: 'ast',
-    type: 'DESIGN_SYSTEM',
-    status: 'INVARIANT',
     symbol: 'lib/components/text_input.dart::TextInput',
     test: 'widget_test.dart',
     x: 18,
     y: 75,
     notes: 'Custom UI component wrapping FormBuilderTextField with standard design styling.',
-    tokens: '95 tokens'
+    status: 'INVARIANT'
   },
   {
     id: 'ast-event-ip',
     label: 'EventIpResponse',
     layer: 'ast',
-    type: 'SCHEMA_MODEL',
-    status: 'ACTIVE',
     symbol: 'src/models/event.ts::EventIpResponse',
     test: 'event.test.ts',
     x: 75,
     y: 78,
     notes: 'Response model with sceneType ("ip" | "venue"). Branding renders when sceneType is "ip".',
-    tokens: '110 tokens'
+    status: 'ACTIVE'
   },
 
   // Layer 2: Episodic Memory Decisions & Invariants
@@ -158,40 +150,34 @@ const GRAPH_NODES = [
     id: 'mem-redis-revocation',
     label: 'Redis Revocation Cache',
     layer: 'memory',
-    type: 'DECISION',
-    status: 'VERIFIED',
     symbol: 'src/auth/token.service.ts::TokenService',
     test: 'auth.test.ts (exit 0)',
     x: 42,
     y: 48,
     notes: 'JWT blacklisting stored in Redis cache with 15-minute sliding TTL to eliminate DB bottlenecks.',
-    tokens: '180 tokens'
+    status: 'VERIFIED'
   },
   {
     id: 'mem-text-input-gotcha',
     label: 'Never Use Raw TextField',
     layer: 'invariant',
-    type: 'INVARIANT',
-    status: 'VERIFIED',
     symbol: 'lib/components/text_input.dart',
     test: 'linter.spec.ts',
     x: 35,
     y: 84,
     notes: 'Global invariant: AI agents must never inject raw Flutter TextField; always use custom TextInput.',
-    tokens: '75 tokens'
+    status: 'VERIFIED'
   },
   {
     id: 'mem-scene-type-rule',
     label: 'Event IP Branding Logic',
     layer: 'memory',
-    type: 'DECISION',
-    status: 'VERIFIED',
     symbol: 'src/models/event.ts::EventIpResponse',
     test: 'ip_branding.test.ts',
     x: 82,
     y: 45,
     notes: 'Logic for displaying event IP branding (poster/logo) vs Event Title depends on sceneType being "ip".',
-    tokens: '90 tokens'
+    status: 'VERIFIED'
   }
 ];
 
@@ -230,7 +216,6 @@ function initGraphViewer() {
     nodeMap[node.id] = { node, el, x: node.x, y: node.y };
   });
 
-  // Render SVG connector curves
   function drawEdges() {
     svg.innerHTML = '';
     const width = svg.clientWidth;
@@ -251,7 +236,7 @@ function initGraphViewer() {
 
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`);
-      path.setAttribute('stroke', '#aab1cc');
+      path.setAttribute('stroke', '#b7bfd9');
       path.setAttribute('stroke-width', '1.5');
       path.setAttribute('stroke-opacity', '0.45');
       path.setAttribute('stroke-dasharray', '4 4');
@@ -302,9 +287,9 @@ function switchWbTab(tabKey, btn) {
 
   if (tabKey === 'ast') {
     document.querySelectorAll('.graph-node.layer-ast').forEach((n) => (n.style.opacity = '1'));
-    document.querySelectorAll('.graph-node.layer-memory, .graph-node.layer-invariant').forEach((n) => (n.style.opacity = '0.2'));
+    document.querySelectorAll('.graph-node.layer-memory, .graph-node.layer-invariant').forEach((n) => (n.style.opacity = '0.15'));
   } else if (tabKey === 'memory') {
-    document.querySelectorAll('.graph-node.layer-ast').forEach((n) => (n.style.opacity = '0.2'));
+    document.querySelectorAll('.graph-node.layer-ast').forEach((n) => (n.style.opacity = '0.15'));
     document.querySelectorAll('.graph-node.layer-memory, .graph-node.layer-invariant').forEach((n) => (n.style.opacity = '1'));
   } else {
     document.querySelectorAll('.graph-node').forEach((n) => (n.style.opacity = '1'));
