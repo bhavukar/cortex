@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "projectName": "cortex",
   "rootPath": "/Users/bhavukarora/.gemini/antigravity/scratch/cortex",
-  "updatedAt": "2026-09-20T10:41:43.919Z",
+  "updatedAt": "2026-09-20T10:50:05.917Z",
   "blueprint": {
     "framework": "Model Context Protocol (MCP) Server",
     "pattern": "Modular Architecture",
@@ -24,8 +24,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.915Z",
-      "updatedAt": "2026-09-20T10:41:43.915Z"
+      "createdAt": "2026-09-20T10:50:05.913Z",
+      "updatedAt": "2026-09-20T10:50:05.914Z"
     },
     {
       "id": "file:.project-cortex.json",
@@ -37,8 +37,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.916Z",
-      "updatedAt": "2026-09-20T10:41:43.916Z"
+      "createdAt": "2026-09-20T10:50:05.914Z",
+      "updatedAt": "2026-09-20T10:50:05.914Z"
     },
     {
       "id": "file:bin/cortex.js",
@@ -50,8 +50,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.916Z",
-      "updatedAt": "2026-09-20T10:41:43.916Z"
+      "createdAt": "2026-09-20T10:50:05.914Z",
+      "updatedAt": "2026-09-20T10:50:05.914Z"
     },
     {
       "id": "file:package-lock.json",
@@ -63,8 +63,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.916Z",
-      "updatedAt": "2026-09-20T10:41:43.916Z"
+      "createdAt": "2026-09-20T10:50:05.915Z",
+      "updatedAt": "2026-09-20T10:50:05.915Z"
     },
     {
       "id": "file:package.json",
@@ -76,8 +76,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.916Z",
-      "updatedAt": "2026-09-20T10:41:43.916Z"
+      "createdAt": "2026-09-20T10:50:05.915Z",
+      "updatedAt": "2026-09-20T10:50:05.915Z"
     },
     {
       "id": "file:src/ast/scanner.ts",
@@ -96,8 +96,8 @@
         "../types.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.917Z",
-      "updatedAt": "2026-09-20T10:41:43.917Z"
+      "createdAt": "2026-09-20T10:50:05.915Z",
+      "updatedAt": "2026-09-20T10:50:05.915Z"
     },
     {
       "id": "file:src/cli.ts",
@@ -118,8 +118,8 @@
         "./mcp/server.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.917Z",
-      "updatedAt": "2026-09-20T10:41:43.917Z"
+      "createdAt": "2026-09-20T10:50:05.915Z",
+      "updatedAt": "2026-09-20T10:50:05.915Z"
     },
     {
       "id": "file:src/graph/compactor.ts",
@@ -137,8 +137,8 @@
         "./engine.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.917Z",
-      "updatedAt": "2026-09-20T10:41:43.917Z"
+      "createdAt": "2026-09-20T10:50:05.916Z",
+      "updatedAt": "2026-09-20T10:50:05.916Z"
     },
     {
       "id": "file:src/graph/engine.ts",
@@ -154,8 +154,8 @@
         "../types.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.917Z",
-      "updatedAt": "2026-09-20T10:41:43.917Z"
+      "createdAt": "2026-09-20T10:50:05.916Z",
+      "updatedAt": "2026-09-20T10:50:05.916Z"
     },
     {
       "id": "file:src/graph/ledger.ts",
@@ -174,8 +174,8 @@
         "./engine.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.918Z",
-      "updatedAt": "2026-09-20T10:41:43.918Z"
+      "createdAt": "2026-09-20T10:50:05.916Z",
+      "updatedAt": "2026-09-20T10:50:05.916Z"
     },
     {
       "id": "file:src/index.ts",
@@ -194,8 +194,8 @@
         "./mcp/server.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.918Z",
-      "updatedAt": "2026-09-20T10:41:43.918Z"
+      "createdAt": "2026-09-20T10:50:05.916Z",
+      "updatedAt": "2026-09-20T10:50:05.916Z"
     },
     {
       "id": "file:src/mcp/server.ts",
@@ -216,8 +216,8 @@
         "../ast/scanner.js"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.918Z",
-      "updatedAt": "2026-09-20T10:41:43.918Z"
+      "createdAt": "2026-09-20T10:50:05.916Z",
+      "updatedAt": "2026-09-20T10:50:05.916Z"
     },
     {
       "id": "file:src/tests/cortex.test.ts",
@@ -238,8 +238,8 @@
         "path"
       ],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.918Z",
-      "updatedAt": "2026-09-20T10:41:43.918Z"
+      "createdAt": "2026-09-20T10:50:05.917Z",
+      "updatedAt": "2026-09-20T10:50:05.917Z"
     },
     {
       "id": "file:src/types.ts",
@@ -261,8 +261,8 @@
       ],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.918Z",
-      "updatedAt": "2026-09-20T10:41:43.918Z"
+      "createdAt": "2026-09-20T10:50:05.917Z",
+      "updatedAt": "2026-09-20T10:50:05.917Z"
     },
     {
       "id": "file:tsconfig.json",
@@ -274,8 +274,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.919Z",
-      "updatedAt": "2026-09-20T10:41:43.919Z"
+      "createdAt": "2026-09-20T10:50:05.917Z",
+      "updatedAt": "2026-09-20T10:50:05.917Z"
     },
     {
       "id": "file:web/app.js",
@@ -287,8 +287,8 @@
       "exports": [],
       "imports": [],
       "weight": 1,
-      "createdAt": "2026-09-20T10:41:43.919Z",
-      "updatedAt": "2026-09-20T10:41:43.919Z"
+      "createdAt": "2026-09-20T10:50:05.917Z",
+      "updatedAt": "2026-09-20T10:50:05.917Z"
     }
   ],
   "edges": []
