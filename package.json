@@ -1,0 +1,39 @@
+{
+  "name": "cortex-memory",
+  "version": "0.1.0",
+  "description": "Dual-Layer Codebase Knowledge Graph & Episodic Memory Engine for AI Coding Agents",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "cortex": "./bin/cortex.js",
+    "cortex-mcp": "./bin/cortex.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "start": "node dist/cli.js",
+    "mcp": "node dist/mcp/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "knowledge-graph",
+    "codebase-context",
+    "cursor",
+    "claude-desktop",
+    "memory-graph",
+    "context-engineering"
+  ],
+  "author": "Bhavuk Arora",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.4.0"
+  }
+}

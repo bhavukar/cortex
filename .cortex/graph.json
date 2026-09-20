@@ -1,0 +1,234 @@
+{
+  "version": "1.0.0",
+  "projectName": "cortex",
+  "rootPath": "/Users/bhavukarora/.gemini/antigravity/scratch/cortex",
+  "updatedAt": "2026-09-20T10:05:02.374Z",
+  "blueprint": {
+    "framework": "Model Context Protocol (MCP) Server",
+    "pattern": "Modular Architecture",
+    "designSystem": {
+      "rules": []
+    },
+    "invariants": [
+      "Preserve type safety and export public APIs with clear parameter types."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "file:bin/cortex.js",
+      "type": "file",
+      "label": "cortex.js",
+      "summary": "cortex.js module",
+      "status": "verified",
+      "path": "bin/cortex.js",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.372Z",
+      "updatedAt": "2026-09-20T10:05:02.372Z"
+    },
+    {
+      "id": "file:package-lock.json",
+      "type": "file",
+      "label": "package-lock.json",
+      "summary": "package-lock.json module",
+      "status": "verified",
+      "path": "package-lock.json",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:package.json",
+      "type": "file",
+      "label": "package.json",
+      "summary": "package.json module",
+      "status": "verified",
+      "path": "package.json",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/ast/scanner.ts",
+      "type": "file",
+      "label": "scanner.ts",
+      "summary": "scanner.ts module",
+      "status": "verified",
+      "path": "src/ast/scanner.ts",
+      "exports": [
+        "ScanResult",
+        "CodebaseScanner"
+      ],
+      "imports": [
+        "fs",
+        "path",
+        "../types.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/cli.ts",
+      "type": "file",
+      "label": "cli.ts",
+      "summary": "cli.ts module",
+      "status": "verified",
+      "path": "src/cli.ts",
+      "exports": [],
+      "imports": [
+        "path",
+        "http",
+        "fs",
+        "./ast/scanner.js",
+        "./graph/engine.js",
+        "./graph/compactor.js",
+        "./graph/ledger.js",
+        "./mcp/server.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/graph/compactor.ts",
+      "type": "file",
+      "label": "compactor.ts",
+      "summary": "compactor.ts module",
+      "status": "verified",
+      "path": "src/graph/compactor.ts",
+      "exports": [
+        "CompactionOptions",
+        "ContextCompactor"
+      ],
+      "imports": [
+        "../types.js",
+        "./engine.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/graph/engine.ts",
+      "type": "file",
+      "label": "engine.ts",
+      "summary": "engine.ts module",
+      "status": "verified",
+      "path": "src/graph/engine.ts",
+      "exports": [
+        "KnowledgeGraphEngine"
+      ],
+      "imports": [
+        "../types.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/graph/ledger.ts",
+      "type": "file",
+      "label": "ledger.ts",
+      "summary": "ledger.ts module",
+      "status": "verified",
+      "path": "src/graph/ledger.ts",
+      "exports": [
+        "EventLedger"
+      ],
+      "imports": [
+        "fs",
+        "path",
+        "../types.js",
+        "./engine.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/index.ts",
+      "type": "file",
+      "label": "index.ts",
+      "summary": "index.ts module",
+      "status": "verified",
+      "path": "src/index.ts",
+      "exports": [],
+      "imports": [
+        "./types.js",
+        "./graph/engine.js",
+        "./graph/compactor.js",
+        "./graph/ledger.js",
+        "./ast/scanner.js",
+        "./mcp/server.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.373Z"
+    },
+    {
+      "id": "file:src/mcp/server.ts",
+      "type": "file",
+      "label": "server.ts",
+      "summary": "server.ts module",
+      "status": "verified",
+      "path": "src/mcp/server.ts",
+      "exports": [
+        "startMcpServer"
+      ],
+      "imports": [
+        "@modelcontextprotocol/sdk/server/index.js",
+        "@modelcontextprotocol/sdk/server/stdio.js",
+        "@modelcontextprotocol/sdk/types.js",
+        "../graph/ledger.js",
+        "../graph/compactor.js",
+        "../ast/scanner.js"
+      ],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.373Z",
+      "updatedAt": "2026-09-20T10:05:02.374Z"
+    },
+    {
+      "id": "file:src/types.ts",
+      "type": "file",
+      "label": "types.ts",
+      "summary": "types.ts module",
+      "status": "verified",
+      "path": "src/types.ts",
+      "exports": [
+        "NodeType",
+        "NodeStatus",
+        "GraphNode",
+        "RelationType",
+        "GraphEdge",
+        "ArchitecturalBlueprint",
+        "ProjectGraphData",
+        "DeltaEvent",
+        "ContextSlice"
+      ],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.374Z",
+      "updatedAt": "2026-09-20T10:05:02.374Z"
+    },
+    {
+      "id": "file:tsconfig.json",
+      "type": "file",
+      "label": "tsconfig.json",
+      "summary": "",
+      "status": "verified",
+      "path": "tsconfig.json",
+      "exports": [],
+      "imports": [],
+      "weight": 1,
+      "createdAt": "2026-09-20T10:05:02.374Z",
+      "updatedAt": "2026-09-20T10:05:02.374Z"
+    }
+  ],
+  "edges": []
+}
