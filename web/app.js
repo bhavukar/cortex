@@ -24,7 +24,7 @@ function initCursorGlow() {
   function updateGlow() {
     currentX += (targetX - currentX) * 0.12;
     currentY += (targetY - currentY) * 0.12;
-    glow.style.transform = `translate3d(${currentX - 240}px, ${currentY - 240}px, 0)`;
+    glow.style.transform = `translate3d(${currentX - 250}px, ${currentY - 250}px, 0)`;
     requestAnimationFrame(updateGlow);
   }
 
@@ -48,15 +48,15 @@ function initParticles(canvasId, isDark = false) {
     height = canvas.height = canvas.parentElement.offsetHeight;
   });
 
-  const count = Math.min(Math.floor((width * height) / 10000), 60);
+  const count = Math.min(Math.floor((width * height) / 9000), 65);
   const particles = [];
 
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
       radius: Math.random() * 2.2 + 1.2,
       baseAlpha: Math.random() * 0.5 + 0.25
     });
@@ -74,8 +74,8 @@ function initParticles(canvasId, isDark = false) {
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    const dotColor = isDark ? '255, 255, 255' : '26, 115, 232';
-    const lineColor = isDark ? '255, 255, 255' : '170, 177, 204';
+    const dotColor = '52, 211, 153';
+    const lineColor = '16, 185, 129';
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
@@ -92,7 +92,7 @@ function initParticles(canvasId, isDark = false) {
       const dy = mouseY - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < 140) {
+      if (dist < 150) {
         // Elastic pull towards cursor
         p.x += (dx / dist) * 0.7;
         p.y += (dy / dist) * 0.7;
@@ -101,7 +101,7 @@ function initParticles(canvasId, isDark = false) {
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(mouseX, mouseY);
-        ctx.strokeStyle = `rgba(${dotColor}, ${(1 - dist / 140) * 0.25})`;
+        ctx.strokeStyle = `rgba(${dotColor}, ${(1 - dist / 150) * 0.35})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -115,11 +115,11 @@ function initParticles(canvasId, isDark = false) {
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const d = Math.hypot(p.x - p2.x, p.y - p2.y);
-        if (d < 120) {
+        if (d < 125) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 120) * 0.2})`;
+          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 125) * 0.22})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -299,9 +299,9 @@ function initGraphViewer() {
 
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`);
-      path.setAttribute('stroke', '#b7bfd9');
+      path.setAttribute('stroke', '#34d399');
       path.setAttribute('stroke-width', '1.5');
-      path.setAttribute('stroke-opacity', '0.45');
+      path.setAttribute('stroke-opacity', '0.35');
       path.setAttribute('stroke-dasharray', '4 4');
       path.setAttribute('fill', 'none');
       svg.appendChild(path);
@@ -329,14 +329,14 @@ function selectNode(node, el) {
 
   if (inspStatusBox) {
     if (node.status === 'VERIFIED') {
-      inspStatusBox.style.borderLeftColor = 'var(--palette-emerald-600)';
-      inspStatusBox.innerHTML = `<strong style="color: var(--palette-emerald-600);">VERIFIED</strong> — Passed verification suite <code>${node.test}</code>.`;
+      inspStatusBox.style.borderLeftColor = 'var(--accent-mint)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--accent-mint);">VERIFIED</strong> — Passed verification suite <code>${node.test}</code>.`;
     } else if (node.status === 'INVARIANT') {
-      inspStatusBox.style.borderLeftColor = 'var(--palette-blue-600)';
-      inspStatusBox.innerHTML = `<strong style="color: var(--palette-blue-600);">INVARIANT</strong> — Core repository rule locked in knowledge graph.`;
+      inspStatusBox.style.borderLeftColor = 'var(--accent-emerald)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--accent-emerald);">INVARIANT</strong> — Core repository rule locked in knowledge graph.`;
     } else {
-      inspStatusBox.style.borderLeftColor = 'var(--palette-amber-600)';
-      inspStatusBox.innerHTML = `<strong style="color: var(--palette-amber-600);">ACTIVE</strong> — Synced with live AST index.`;
+      inspStatusBox.style.borderLeftColor = 'var(--accent-amber)';
+      inspStatusBox.innerHTML = `<strong style="color: var(--accent-amber);">ACTIVE</strong> — Synced with live AST index.`;
     }
   }
 }
@@ -497,12 +497,12 @@ function copyCliCommand() {
     const label = document.getElementById('cli-copy-label');
     if (label) {
       label.textContent = 'COPIED!';
-      label.style.background = 'var(--palette-emerald-50)';
-      label.style.color = 'var(--palette-emerald-600)';
+      label.style.background = 'rgba(52, 211, 153, 0.3)';
+      label.style.color = '#34d399';
       setTimeout(() => {
         label.textContent = 'COPY';
-        label.style.background = '#ffffff';
-        label.style.color = 'var(--palette-grey-800)';
+        label.style.background = 'rgba(52, 211, 153, 0.15)';
+        label.style.color = 'var(--accent-mint)';
       }, 2000);
     }
   });
@@ -513,7 +513,7 @@ function copyCliCommand() {
 // =============================================================================
 document.addEventListener('DOMContentLoaded', () => {
   initCursorGlow();
-  initParticles('morphing-particles-canvas', false);
+  initParticles('morphing-particles-canvas', true);
   initParticles('liftoff-particles-canvas', true);
   initGraphViewer();
   initTiltCards();
