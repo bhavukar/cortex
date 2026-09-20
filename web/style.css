@@ -1,36 +1,38 @@
 /* ==========================================================================
-   CORTEX MINIMALIST DEVELOPER DOCS & API REFERENCE
-   Color Palette: Deep Pine Dark Green (#07150e) & Clean Emerald Accents
+   CORTEX PLAIN DARK THEME — DEVELOPER DOCS & API REFERENCE
+   Clean Neutral Dark Palette (#090a0b) with Emerald Green Accent & Secondary CTAs
    ========================================================================== */
 
 :root {
-  /* Dark Green Minimal Palette */
-  --bg-app: #07150e;
-  --bg-sidebar: #06120c;
-  --bg-surface: #0a1d14;
-  --bg-surface-elevated: #0e271b;
-  --bg-card: #0c2217;
-  --bg-code: #050f0a;
-  --bg-code-header: #081911;
+  /* Neutral Dark Theme Palette */
+  --bg-app: #090a0c;
+  --bg-sidebar: #0c0d0f;
+  --bg-surface: #121316;
+  --bg-surface-elevated: #18191d;
+  --bg-card: #131418;
+  --bg-code: #060708;
+  --bg-code-header: #0e0f12;
 
-  /* Emerald & Mint Accents */
-  --accent-primary: #10b981;
-  --accent-mint: #34d399;
-  --accent-primary-dim: rgba(16, 185, 129, 0.12);
+  /* Secondary CTA & Accent Colors */
+  --accent-green: #10b981;
+  --accent-green-hover: #059669;
+  --accent-green-dim: rgba(16, 185, 129, 0.12);
+  --accent-green-border: rgba(16, 185, 129, 0.3);
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
+  --accent-blue: #3b82f6;
 
   /* Text Hierarchy */
-  --text-main: #f0fdf4;
-  --text-body: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
-  --text-accent: #34d399;
+  --text-main: #ffffff;
+  --text-body: #d4d4d8;
+  --text-muted: #8e8e93;
+  --text-faint: #52525b;
+  --text-green: #34d399;
 
   /* Borders */
-  --border-subtle: rgba(52, 211, 153, 0.1);
-  --border-medium: rgba(52, 211, 153, 0.2);
-  --border-strong: rgba(52, 211, 153, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.25);
 
   /* Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -43,9 +45,7 @@
   --max-content-width: 860px;
 }
 
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
+/* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -85,9 +85,9 @@ code, pre {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(6, 18, 12, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(9, 10, 12, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   z-index: 100;
   display: flex;
@@ -116,9 +116,9 @@ code, pre {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  color: var(--accent-mint);
-  background: var(--accent-primary-dim);
-  border: 1px solid var(--border-subtle);
+  color: var(--text-green);
+  background: var(--accent-green-dim);
+  border: 1px solid var(--accent-green-border);
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -182,8 +182,30 @@ code, pre {
   border-color: var(--border-medium);
 }
 
+/* Secondary Action Button (Green CTA) */
+.btn-cta-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-cta-green:hover {
+  background: var(--accent-green-hover);
+  border-color: var(--accent-green-hover);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
 /* ==========================================================================
-   DOCUMENTATION LAYOUT (SIDEBAR + MAIN CONTENT + TOC)
+   DOCUMENTATION LAYOUT
    ========================================================================== */
 .docs-layout {
   display: flex;
@@ -191,7 +213,7 @@ code, pre {
   min-height: calc(100vh - var(--header-height));
 }
 
-/* Left Sidebar Navigation */
+/* Left Sidebar */
 .docs-sidebar {
   width: var(--sidebar-width);
   position: fixed;
@@ -235,12 +257,12 @@ code, pre {
 }
 
 .sidebar-link.active {
-  color: var(--accent-mint);
-  background: var(--accent-primary-dim);
+  color: var(--text-green);
+  background: var(--accent-green-dim);
   font-weight: 500;
 }
 
-/* Main Documentation Content Area */
+/* Main Content */
 .docs-main {
   flex: 1;
   margin-left: var(--sidebar-width);
@@ -287,11 +309,11 @@ code, pre {
 }
 
 .toc-link.active {
-  color: var(--accent-mint);
+  color: var(--text-green);
 }
 
 /* ==========================================================================
-   TYPOGRAPHY & CONTENT ELEMENTS
+   TYPOGRAPHY
    ========================================================================== */
 .docs-title {
   font-size: 36px;
@@ -341,7 +363,7 @@ p {
 p code, li code {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  color: var(--accent-mint);
+  color: var(--text-green);
   font-size: 13px;
   padding: 2px 6px;
   border-radius: 4px;
@@ -460,26 +482,18 @@ li {
 .param-name {
   font-family: var(--font-mono);
   font-size: 12.5px;
-  color: var(--accent-mint);
+  color: var(--text-green);
   font-weight: 600;
 }
 
-.param-type {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text-faint);
-  display: block;
-  margin-top: 2px;
-}
-
 /* ==========================================================================
-   CALLOUT BOXES & CARDS
+   CALLOUTS & CARDS
    ========================================================================== */
 .callout {
   padding: 16px;
   border-radius: 8px;
   background: var(--bg-surface);
-  border-left: 3px solid var(--accent-primary);
+  border-left: 3px solid var(--accent-green);
   margin: 20px 0;
   font-size: 14px;
 }
