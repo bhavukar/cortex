@@ -1,11 +1,38 @@
 /**
- * CORTEX APPLICATION LOGIC
- * High-performance particle physics, interactive dual-layer graph DAG,
- * live compactor simulator, and workbench controllers.
+ * CORTEX INTERACTIVE ENGINE
+ * Ambient cursor physics, 60fps morphing particles with mouse gravity,
+ * interactive 3D card tilts, dual-layer DAG, and compactor sandbox.
  */
 
 // =============================================================================
-// 1. MORPHING PARTICLES SIMULATION (HERO & BOTTOM BANNER)
+// 1. SMOOTH CURSOR AMBIENT GLOW TRACKER
+// =============================================================================
+function initCursorGlow() {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow) return;
+
+  let currentX = window.innerWidth / 2;
+  let currentY = window.innerHeight / 2;
+  let targetX = currentX;
+  let targetY = currentY;
+
+  window.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+
+  function updateGlow() {
+    currentX += (targetX - currentX) * 0.12;
+    currentY += (targetY - currentY) * 0.12;
+    glow.style.transform = `translate3d(${currentX - 240}px, ${currentY - 240}px, 0)`;
+    requestAnimationFrame(updateGlow);
+  }
+
+  updateGlow();
+}
+
+// =============================================================================
+// 2. MORPHING PARTICLES SIMULATION WITH MOUSE GRAVITY & CONSTELLATIONS
 // =============================================================================
 function initParticles(canvasId, isDark = false) {
   const canvas = document.getElementById(canvasId);
@@ -21,17 +48,17 @@ function initParticles(canvasId, isDark = false) {
     height = canvas.height = canvas.parentElement.offsetHeight;
   });
 
-  const count = Math.min(Math.floor((width * height) / 12000), 50);
+  const count = Math.min(Math.floor((width * height) / 10000), 60);
   const particles = [];
 
   for (let i = 0; i < count; i++) {
     particles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 2 + 1.2,
-      baseAlpha: Math.random() * 0.4 + 0.2
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2.2 + 1.2,
+      baseAlpha: Math.random() * 0.5 + 0.25
     });
   }
 
@@ -60,13 +87,23 @@ function initParticles(canvasId, isDark = false) {
       if (p.y < 0) p.y = height;
       if (p.y > height) p.y = 0;
 
-      // Mouse repulsion
+      // Mouse interactive gravity
       const dx = mouseX - p.x;
       const dy = mouseY - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 100) {
-        p.x -= (dx / dist) * 0.5;
-        p.y -= (dy / dist) * 0.5;
+
+      if (dist < 140) {
+        // Elastic pull towards cursor
+        p.x += (dx / dist) * 0.7;
+        p.y += (dy / dist) * 0.7;
+
+        // Line to cursor
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(${dotColor}, ${(1 - dist / 140) * 0.25})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
 
       ctx.beginPath();
@@ -78,12 +115,12 @@ function initParticles(canvasId, isDark = false) {
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const d = Math.hypot(p.x - p2.x, p.y - p2.y);
-        if (d < 110) {
+        if (d < 120) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 110) * 0.16})`;
-          ctx.lineWidth = 0.75;
+          ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 120) * 0.2})`;
+          ctx.lineWidth = 0.8;
           ctx.stroke();
         }
       }
@@ -96,7 +133,33 @@ function initParticles(canvasId, isDark = false) {
 }
 
 // =============================================================================
-// 2. DUAL-LAYER KNOWLEDGE GRAPH DATA & VISUALIZATION
+// 3. 3D TILT EFFECT ON INTERACTIVE CARDS
+// =============================================================================
+function initTiltCards() {
+  const cards = document.querySelectorAll('.feature-media-frame, .use-case-card, .simulator-card');
+  
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -3;
+      const rotateY = ((x - centerX) / centerX) * 3;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+}
+
+// =============================================================================
+// 4. DUAL-LAYER KNOWLEDGE GRAPH DATA & VISUALIZATION
 // =============================================================================
 const GRAPH_NODES = [
   // Layer 1: AST Symbols
@@ -279,7 +342,7 @@ function selectNode(node, el) {
 }
 
 // =============================================================================
-// 3. WORKBENCH TAB SWITCHER
+// 5. WORKBENCH TAB SWITCHER
 // =============================================================================
 function switchWbTab(tabKey, btn) {
   document.querySelectorAll('.wb-tab').forEach((t) => t.classList.remove('active'));
@@ -297,7 +360,7 @@ function switchWbTab(tabKey, btn) {
 }
 
 // =============================================================================
-// 4. CONTEXT COMPACTOR SIMULATOR SCENARIOS
+// 6. CONTEXT COMPACTOR SIMULATOR SCENARIOS
 // =============================================================================
 const SCENARIOS = {
   auth: {
@@ -426,7 +489,7 @@ function switchScenario(scenarioKey, btn) {
 }
 
 // =============================================================================
-// 5. CLIPBOARD HELPER
+// 7. CLIPBOARD HELPER
 // =============================================================================
 function copyCliCommand() {
   const text = document.getElementById('cli-command-text')?.innerText || 'npx cortex-graph init';
@@ -446,11 +509,13 @@ function copyCliCommand() {
 }
 
 // =============================================================================
-// 6. INITIALIZATION ON DOM READY
+// 8. INITIALIZATION
 // =============================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  initCursorGlow();
   initParticles('morphing-particles-canvas', false);
   initParticles('liftoff-particles-canvas', true);
   initGraphViewer();
+  initTiltCards();
   switchScenario('auth', document.querySelector('.scenario-pill'));
 });

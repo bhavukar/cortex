@@ -1,6 +1,7 @@
 /* ==========================================================================
-   CORTEX DESIGN SYSTEM
-   Modern, precision typography, ambient particles, and clean surfaces.
+   CORTEX HIGH-FIDELITY DESIGN SYSTEM
+   Featuring ambient cursor physics, interactive multi-layer visual widgets,
+   3D tilt cards, and fluid particle constellations.
    ========================================================================== */
 
 :root {
@@ -20,15 +21,21 @@
   --palette-grey-1100: #18191d;
   --palette-grey-1200: #121317;
   
+  --palette-blue-500: #3b82f6;
   --palette-blue-600: #1a73e8;
   --palette-blue-700: #1557b0;
   --palette-blue-50: #e8f0fe;
   
+  --palette-emerald-500: #10b981;
   --palette-emerald-600: #0d904f;
   --palette-emerald-50: #e6f4ea;
   
+  --palette-amber-500: #f59e0b;
   --palette-amber-600: #ea8600;
   --palette-amber-50: #fef7e0;
+
+  --palette-rose-500: #f43f5e;
+  --palette-rose-50: #ffe4e6;
 
   /* Theme Tokens */
   --theme-surface-surface: var(--palette-grey-0);
@@ -123,7 +130,24 @@ code, pre {
   vertical-align: middle;
 }
 
-/* Ambient Morphing Particles Background */
+/* ==========================================================================
+   AMBIENT CURSOR GLOW & INTERACTIVE PARTICLES
+   ========================================================================== */
+.cursor-ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 115, 232, 0.07) 0%, rgba(26, 115, 232, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
 .morphing-particles-container {
   position: absolute;
   top: 0;
@@ -143,7 +167,9 @@ code, pre {
   height: 100%;
 }
 
-/* Floating Frosted Header */
+/* ==========================================================================
+   FLOATING FROSTED HEADER
+   ========================================================================== */
 .header {
   position: fixed;
   top: 0;
@@ -205,7 +231,9 @@ code, pre {
   gap: 10px;
 }
 
-/* Buttons */
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
 .button {
   font-family: var(--font-family-sans);
   font-size: 14px;
@@ -235,7 +263,8 @@ code, pre {
 .button-primary:hover {
   background: var(--theme-primary-hover);
   border-color: var(--theme-primary-hover);
-  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.3);
+  transform: translateY(-1px);
 }
 
 .button-secondary {
@@ -247,6 +276,7 @@ code, pre {
 .button-secondary:hover {
   background: var(--palette-grey-10);
   border-color: var(--palette-grey-300);
+  transform: translateY(-1px);
 }
 
 .button-compact {
@@ -254,7 +284,9 @@ code, pre {
   font-size: 13px;
 }
 
-/* Hero Welcome Section */
+/* ==========================================================================
+   HERO WELCOME SECTION
+   ========================================================================== */
 .welcome-section {
   position: relative;
   padding-top: 150px;
@@ -311,12 +343,15 @@ code, pre {
   font-size: 13px;
   color: var(--palette-grey-1200);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .cli-pill:hover {
   background: var(--palette-grey-20);
-  border-color: var(--palette-grey-300);
+  border-color: var(--palette-blue-500);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.12);
+  transform: translateY(-1px);
 }
 
 .cli-prompt {
@@ -333,9 +368,12 @@ code, pre {
   padding: 2px 8px;
   border-radius: var(--shape-corner-rounded);
   color: var(--palette-grey-800);
+  transition: all 0.2s ease;
 }
 
-/* Interactive Workbench Stage */
+/* ==========================================================================
+   INTERACTIVE WORKBENCH STAGE
+   ========================================================================== */
 .stage-section {
   position: relative;
   max-width: var(--max-content-width);
@@ -348,10 +386,11 @@ code, pre {
   background: #ffffff;
   border: 1px solid var(--theme-outline-variant);
   border-radius: var(--shape-corner-xl);
-  box-shadow: 0 20px 60px rgba(18, 19, 23, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 24px 64px rgba(18, 19, 23, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .workbench-top-bar {
@@ -419,6 +458,12 @@ code, pre {
   border-radius: 50%;
   background: var(--palette-emerald-600);
   box-shadow: 0 0 0 3px var(--palette-emerald-50);
+  animation: beaconPulse 2s infinite;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--palette-emerald-50); }
+  50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.2); }
 }
 
 .workbench-main {
@@ -430,7 +475,7 @@ code, pre {
 
 .graph-canvas-viewport {
   position: relative;
-  background: radial-gradient(circle at center, rgba(248, 249, 252, 0.8) 0%, #ffffff 100%);
+  background: radial-gradient(circle at center, rgba(248, 249, 252, 0.95) 0%, #ffffff 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -468,7 +513,7 @@ code, pre {
   font-size: 12.5px;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   user-select: none;
@@ -476,8 +521,8 @@ code, pre {
 
 .graph-node:hover, .graph-node.active {
   border-color: var(--palette-blue-600);
-  box-shadow: 0 6px 20px rgba(26, 115, 232, 0.16);
-  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.2);
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
 .graph-node.layer-ast .node-indicator { background: var(--palette-blue-600); }
@@ -498,13 +543,13 @@ code, pre {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .inspector-header {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .inspector-badge {
@@ -517,7 +562,7 @@ code, pre {
 }
 
 .inspector-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: var(--palette-grey-1200);
   line-height: 1.25;
@@ -526,7 +571,7 @@ code, pre {
 .inspector-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .inspector-label {
@@ -553,7 +598,9 @@ code, pre {
   color: var(--palette-blue-600);
 }
 
-/* Feature Explorer */
+/* ==========================================================================
+   FEATURE EXPLORER & RICH VISUAL WIDGETS
+   ========================================================================== */
 .feature-explorer-section {
   padding: var(--space-5xl) 0;
   position: relative;
@@ -597,22 +644,18 @@ code, pre {
 .feature-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5xl);
+  gap: 80px;
 }
 
 .feature-item {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   align-items: center;
   gap: var(--space-3xl);
 }
 
 .feature-item.reverse {
-  direction: rtl;
-}
-
-.feature-item.reverse > * {
-  direction: ltr;
+  grid-template-columns: 1.15fr 1fr;
 }
 
 .feature-copy {
@@ -622,9 +665,9 @@ code, pre {
 }
 
 .feature-heading {
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-size: clamp(24px, 2.6vw, 34px);
   font-weight: 450;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--palette-grey-1200);
 }
@@ -635,33 +678,279 @@ code, pre {
   line-height: 1.6;
 }
 
-.feature-media {
+/* Visual Media Container */
+.feature-media-frame {
   background: var(--palette-grey-10);
   border: 1px solid var(--theme-outline-variant);
   border-radius: var(--shape-corner-xl);
   overflow: hidden;
-  padding: 24px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03);
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.code-preview-box {
+.feature-media-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.07);
+}
+
+/* ==========================================================================
+   WIDGET 1: DUAL-LAYER TOPOLOGY DIAGRAM
+   ========================================================================== */
+.dual-topology-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.topology-layer-card {
   background: #ffffff;
   border: 1px solid var(--theme-outline-variant);
   border-radius: var(--shape-corner-md);
   padding: 16px;
-  font-family: var(--font-family-code);
-  font-size: 12.5px;
-  line-height: 1.65;
-  color: var(--palette-grey-1200);
-  overflow-x: auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  position: relative;
 }
 
-.code-preview-box .tok-kw { color: #d73a49; font-weight: 600; }
-.code-preview-box .tok-fn { color: #6f42c1; }
-.code-preview-box .tok-str { color: #032f62; }
-.code-preview-box .tok-com { color: #6a737d; font-style: italic; }
+.topology-layer-card.ast-layer {
+  border-left: 3px solid var(--palette-blue-600);
+}
 
-/* Compactor Simulator */
+.topology-layer-card.memory-layer {
+  border-left: 3px solid var(--palette-emerald-600);
+}
+
+.topology-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.topology-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--palette-grey-800);
+}
+
+.topology-badge {
+  font-family: var(--font-family-code);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--palette-blue-600);
+  background: var(--palette-blue-50);
+  padding: 2px 8px;
+  border-radius: var(--shape-corner-rounded);
+}
+
+.topology-nodes-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.topo-node-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--palette-grey-10);
+  border: 1px solid var(--theme-outline-variant);
+  padding: 6px 12px;
+  border-radius: var(--shape-corner-sm);
+  font-family: var(--font-family-code);
+  font-size: 12px;
+  color: var(--palette-grey-1200);
+  transition: all 0.15s ease;
+}
+
+.topo-node-chip:hover {
+  border-color: var(--palette-blue-600);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.topo-connector-ray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  position: relative;
+}
+
+.ray-line {
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--palette-blue-600) 0%, var(--palette-emerald-600) 100%);
+  opacity: 0.5;
+}
+
+.ray-badge {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid var(--theme-outline-variant);
+  border-radius: var(--shape-corner-rounded);
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--palette-grey-800);
+}
+
+/* ==========================================================================
+   WIDGET 2: TOKEN COMPACTION FUNNEL
+   ========================================================================== */
+.compaction-funnel-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.funnel-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.funnel-box {
+  background: #ffffff;
+  border: 1px solid var(--theme-outline-variant);
+  border-radius: var(--shape-corner-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.funnel-box.before {
+  border-top: 3px solid var(--palette-rose-500);
+}
+
+.funnel-box.after {
+  border-top: 3px solid var(--palette-emerald-600);
+}
+
+.funnel-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.funnel-metric-huge {
+  font-family: var(--font-family-code);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.funnel-metric-huge.waste { color: var(--palette-rose-500); }
+.funnel-metric-huge.optimal { color: var(--palette-emerald-600); }
+
+.funnel-file-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-stack-bar {
+  height: 6px;
+  background: var(--palette-grey-100);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.file-stack-bar.waste-fill {
+  background: var(--palette-rose-500);
+  opacity: 0.4;
+}
+
+.file-stack-bar.optimal-fill {
+  background: var(--palette-emerald-600);
+  width: 25%;
+}
+
+.funnel-arrow-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.funnel-ratio-chip {
+  font-family: var(--font-family-code);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--palette-grey-1200);
+  padding: 3px 8px;
+  border-radius: var(--shape-corner-rounded);
+}
+
+/* ==========================================================================
+   WIDGET 3: ATOMIC LEDGER TIMELINE
+   ========================================================================== */
+.ledger-timeline-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.ledger-event-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--theme-outline-variant);
+  border-radius: var(--shape-corner-sm);
+  padding: 12px 16px;
+  font-family: var(--font-family-code);
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease;
+}
+
+.ledger-event-row:hover {
+  border-color: var(--palette-blue-600);
+  transform: translateX(3px);
+}
+
+.event-hash {
+  color: var(--palette-grey-800);
+  font-size: 11px;
+}
+
+.event-payload {
+  color: var(--palette-grey-1200);
+  font-weight: 500;
+}
+
+.event-gate-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--shape-corner-rounded);
+}
+
+.event-gate-status.verified {
+  background: var(--palette-emerald-50);
+  color: var(--palette-emerald-600);
+}
+
+.event-gate-status.tentative {
+  background: var(--palette-amber-50);
+  color: var(--palette-amber-600);
+}
+
+/* ==========================================================================
+   COMPACTOR SIMULATOR
+   ========================================================================== */
 .compactor-section {
   padding: var(--space-5xl) 0;
   background: var(--palette-grey-10);
@@ -797,7 +1086,9 @@ code, pre {
   color: var(--palette-grey-800);
 }
 
-/* Cards Grid */
+/* ==========================================================================
+   CARDS GRID (CLI & PROTOCOL)
+   ========================================================================== */
 .cards-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -812,6 +1103,14 @@ code, pre {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.use-case-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--palette-blue-600);
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.08);
 }
 
 .card-top {
@@ -821,7 +1120,7 @@ code, pre {
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: var(--palette-grey-1200);
   line-height: 1.3;
@@ -837,7 +1136,26 @@ code, pre {
   line-height: 1.55;
 }
 
-/* Bottom Installation Banner */
+.code-preview-box {
+  background: #ffffff;
+  border: 1px solid var(--theme-outline-variant);
+  border-radius: var(--shape-corner-md);
+  padding: 18px;
+  font-family: var(--font-family-code);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--palette-grey-1200);
+  overflow-x: auto;
+}
+
+.code-preview-box .tok-kw { color: #d73a49; font-weight: 600; }
+.code-preview-box .tok-fn { color: #6f42c1; }
+.code-preview-box .tok-str { color: #032f62; }
+.code-preview-box .tok-com { color: #6a737d; font-style: italic; }
+
+/* ==========================================================================
+   BOTTOM INSTALLATION BANNER
+   ========================================================================== */
 .liftoff-container {
   padding: 0 var(--page-margin) var(--space-5xl);
   max-width: var(--max-content-width);
@@ -897,9 +1215,12 @@ code, pre {
 
 .button-white:hover {
   background: var(--palette-grey-50);
+  transform: translateY(-1px);
 }
 
-/* Minimalist Footer */
+/* ==========================================================================
+   MINIMALIST FOOTER
+   ========================================================================== */
 .footer {
   background: var(--palette-grey-10);
   border-top: 1px solid var(--theme-outline-variant);
@@ -932,7 +1253,9 @@ code, pre {
   color: var(--palette-grey-1200);
 }
 
-/* Responsive */
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
 @media (max-width: 1024px) {
   .nav-menu {
     display: none;
@@ -944,17 +1267,17 @@ code, pre {
     border-left: none;
     border-top: 1px solid var(--theme-outline-variant);
   }
-  .feature-item {
+  .feature-item, .feature-item.reverse {
     grid-template-columns: 1fr;
     gap: 28px;
-  }
-  .feature-item.reverse {
-    direction: ltr;
   }
   .cards-grid-3 {
     grid-template-columns: 1fr;
   }
   .simulator-grid {
+    grid-template-columns: 1fr;
+  }
+  .funnel-comparison-grid {
     grid-template-columns: 1fr;
   }
 }
